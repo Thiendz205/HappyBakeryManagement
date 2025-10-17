@@ -1,4 +1,5 @@
 ﻿using HappyBakeryManagement.Data;
+using HappyBakeryManagement.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,7 +39,6 @@ namespace HappyBakeryManagement
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
-            // 👉 GỌI SEED Ở ĐÂY
             SeedDataAsync(app).Wait();
 
             // Configure the HTTP request pipeline.

@@ -11,7 +11,8 @@ namespace HappyBakeryManagement.Models
         public DateTime? CreatedDate { get; set; }
         public DateTime? EndDate { get; private set; }
         public int ? CategoryId { get; set; }
-        public virtual Category? Category { get; set; }
-
+        public virtual Category Category { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetailss { get; set; } = new List<OrderDetails>();
+        public string Image { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using HappyBakeryManagement.Models;
-using HappyBakeryManagement.Data;
 namespace HappyBakeryManagement.Services
 {
     public class CustomerService : ICustomerService

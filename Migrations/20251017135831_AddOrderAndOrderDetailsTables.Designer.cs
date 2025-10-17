@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HappyBakeryManagement.Migrations
 {
     [DbContext(typeof(HappyBakeryContext))]
-    [Migration("20251012151016_InitHappyBakery")]
-    partial class InitHappyBakery
+    [Migration("20251017135831_AddOrderAndOrderDetailsTables")]
+    partial class AddOrderAndOrderDetailsTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,6 +80,71 @@ namespace HappyBakeryManagement.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("HappyBakeryManagement.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DeliveryAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerID");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("HappyBakeryManagement.Models.OrderDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("OrderDetails");
+                });
+
             modelBuilder.Entity("HappyBakeryManagement.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -114,6 +179,36 @@ namespace HappyBakeryManagement.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("HappyBakeryManagement.Models.Order", b =>
+                {
+                    b.HasOne("HappyBakeryManagement.Models.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("HappyBakeryManagement.Models.OrderDetails", b =>
+                {
+                    b.HasOne("HappyBakeryManagement.Models.Order", "Order")
+                        .WithMany("OrderDetailss")
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HappyBakeryManagement.Models.Product", "Product")
+                        .WithMany("OrderDetailss")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("HappyBakeryManagement.Models.Product", b =>
                 {
                     b.HasOne("HappyBakeryManagement.Models.Category", "Category")
@@ -126,6 +221,21 @@ namespace HappyBakeryManagement.Migrations
             modelBuilder.Entity("HappyBakeryManagement.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("HappyBakeryManagement.Models.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("HappyBakeryManagement.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetailss");
+                });
+
+            modelBuilder.Entity("HappyBakeryManagement.Models.Product", b =>
+                {
+                    b.Navigation("OrderDetailss");
                 });
 #pragma warning restore 612, 618
         }
