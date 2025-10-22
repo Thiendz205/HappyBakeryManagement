@@ -3,96 +3,24 @@
   "WorkspaceRootPath": "C:\\ASP.Net\\HappyBakeryManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\paymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\paymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251017142740_AddProductTables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20251017142740_AddProductTables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\happybakerycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\happybakerycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\evaluate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\evaluate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251017142444_AddEvaluateAndOrderAndPaymentMethodAndCartTables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20251017142444_AddEvaluateAndOrderAndPaymentMethodAndCartTables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\migrations\\happybakerycontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:migrations\\happybakerycontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\data\\migrations\\20251020142127_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:data\\migrations\\20251020142127_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\data\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:data\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\migrations\\20251017135831_addorderandorderdetailstables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:migrations\\20251017135831_addorderandorderdetailstables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\migrations\\20251012151016_inithappybakery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:migrations\\20251012151016_inithappybakery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\services\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:services\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\services\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:services\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -107,12 +35,56 @@
       "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\areas\\identity\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:areas\\identity\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\paymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\paymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\evaluate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\evaluate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\areas\\identity\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:areas\\identity\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -153,10 +125,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\areas\\identity\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:areas\\identity\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|c:\\asp.net\\happybakerymanagement\\data\\migrations\\20251012135757_initialidentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B32BE2FC-F102-4F60-814F-C03DC9F62540}|HappyBakeryManagement.csproj|solutionrelative:data\\migrations\\20251012135757_initialidentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -166,50 +134,133 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Customer.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\Customer.cs",
-              "RelativeDocumentMoniker": "Models\\Customer.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\Customer.cs",
-              "RelativeToolTip": "Models\\Customer.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAkwBEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "20251020142127_InitialCreate.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\Migrations\\20251020142127_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Data\\Migrations\\20251020142127_InitialCreate.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\Migrations\\20251020142127_InitialCreate.cs",
+              "RelativeToolTip": "Data\\Migrations\\20251020142127_InitialCreate.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T13:59:28.205Z",
+              "WhenOpened": "2025-10-20T14:21:27.485Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PaymentMethod.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\PaymentMethod.cs",
-              "RelativeDocumentMoniker": "Models\\PaymentMethod.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\PaymentMethod.cs",
-              "RelativeToolTip": "Models\\PaymentMethod.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAeAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Controllers\\ProductController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-17T14:18:02.729Z",
+              "WhenOpened": "2025-10-12T15:14:58.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "Models\\ApplicationUser.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "Models\\ApplicationUser.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwAcAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T13:49:00.375Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "OrderDetails.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\OrderDetails.cs",
-              "RelativeDocumentMoniker": "Models\\OrderDetails.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\OrderDetails.cs",
-              "RelativeToolTip": "Models\\OrderDetails.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA1AAAAAAAAAA==",
+              "Title": "ApplicationDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeToolTip": "Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T08:43:14.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T14:19:25.761Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T15:05:22.908Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-12T13:51:23.656Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T14:13:02.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Controllers\\CustomerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T15:12:45.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T15:13:56.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "Models\\Customer.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\Customer.cs",
+              "RelativeToolTip": "Models\\Customer.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAIwBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T13:59:28.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\Order.cs",
               "RelativeDocumentMoniker": "Models\\Order.cs",
@@ -217,25 +268,35 @@
               "RelativeToolTip": "Models\\Order.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T08:17:39.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-14T08:17:39.671Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "20251017142740_AddProductTables.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251017142740_AddProductTables.cs",
-              "RelativeDocumentMoniker": "Migrations\\20251017142740_AddProductTables.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251017142740_AddProductTables.cs",
-              "RelativeToolTip": "Migrations\\20251017142740_AddProductTables.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "PaymentMethod.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\PaymentMethod.cs",
+              "RelativeDocumentMoniker": "Models\\PaymentMethod.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\PaymentMethod.cs",
+              "RelativeToolTip": "Models\\PaymentMethod.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-17T14:27:40.379Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-17T14:18:02.729Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
+              "Title": "OrderDetails.cs",
+              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\OrderDetails.cs",
+              "RelativeDocumentMoniker": "Models\\OrderDetails.cs",
+              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\OrderDetails.cs",
+              "RelativeToolTip": "Models\\OrderDetails.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T08:43:14.427Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Evaluate.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\Evaluate.cs",
               "RelativeDocumentMoniker": "Models\\Evaluate.cs",
@@ -243,25 +304,11 @@
               "RelativeToolTip": "Models\\Evaluate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-17T14:05:41.328Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-17T14:05:41.328Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "HappyBakeryContext.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\HappyBakeryContext.cs",
-              "RelativeDocumentMoniker": "Models\\HappyBakeryContext.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\HappyBakeryContext.cs",
-              "RelativeToolTip": "Models\\HappyBakeryContext.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAuwBgAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T14:37:13.013Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\Product.cs",
               "RelativeDocumentMoniker": "Models\\Product.cs",
@@ -269,12 +316,11 @@
               "RelativeToolTip": "Models\\Product.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAkwA8AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T14:48:10.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-12T14:48:10.311Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "Cart.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\Cart.cs",
               "RelativeDocumentMoniker": "Models\\Cart.cs",
@@ -282,25 +328,11 @@
               "RelativeToolTip": "Models\\Cart.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-17T14:13:57.885Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-17T14:13:57.885Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "20251017142444_AddEvaluateAndOrderAndPaymentMethodAndCartTables.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251017142444_AddEvaluateAndOrderAndPaymentMethodAndCartTables.cs",
-              "RelativeDocumentMoniker": "Migrations\\20251017142444_AddEvaluateAndOrderAndPaymentMethodAndCartTables.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251017142444_AddEvaluateAndOrderAndPaymentMethodAndCartTables.cs",
-              "RelativeToolTip": "Migrations\\20251017142444_AddEvaluateAndOrderAndPaymentMethodAndCartTables.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-17T14:24:44.79Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\Category.cs",
               "RelativeDocumentMoniker": "Models\\Category.cs",
@@ -308,12 +340,11 @@
               "RelativeToolTip": "Models\\Category.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T14:46:27.935Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-12T14:46:27.935Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ErrorViewModel.cs",
@@ -321,86 +352,7 @@
               "RelativeToolTip": "Models\\ErrorViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T14:29:28.58Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "HappyBakeryContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\HappyBakeryContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "Migrations\\HappyBakeryContextModelSnapshot.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\HappyBakeryContextModelSnapshot.cs",
-              "RelativeToolTip": "Migrations\\HappyBakeryContextModelSnapshot.cs",
-              "ViewState": "AgIAAO4AAAAAAAAAAAAYwHIBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T08:15:19.745Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ApplicationDbContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "RelativeToolTip": "Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "ViewState": "AgIAAPQAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T14:13:09.259Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "20251017135831_AddOrderAndOrderDetailsTables.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251017135831_AddOrderAndOrderDetailsTables.cs",
-              "RelativeDocumentMoniker": "Migrations\\20251017135831_AddOrderAndOrderDetailsTables.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251017135831_AddOrderAndOrderDetailsTables.cs",
-              "RelativeToolTip": "Migrations\\20251017135831_AddOrderAndOrderDetailsTables.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-17T13:58:31.871Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "20251012151016_InitHappyBakery.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251012151016_InitHappyBakery.cs",
-              "RelativeDocumentMoniker": "Migrations\\20251012151016_InitHappyBakery.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Migrations\\20251012151016_InitHappyBakery.cs",
-              "RelativeToolTip": "Migrations\\20251012151016_InitHappyBakery.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T15:10:16.703Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T15:05:22.908Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAQwCgAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T13:53:57.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-12T14:29:28.58Z"
             },
             {
               "$type": "Document",
@@ -412,8 +364,7 @@
               "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "ViewState": "AgIAAHEAAAAAAAAAAAAUwHoAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T14:14:24.858Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-12T14:14:24.858Z"
             },
             {
               "$type": "Document",
@@ -430,79 +381,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 20,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CategoryController.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "Controllers\\CategoryController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T15:13:56.497Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "CustomerService.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Services\\CustomerService.cs",
-              "RelativeDocumentMoniker": "Services\\CustomerService.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Services\\CustomerService.cs",
-              "RelativeToolTip": "Services\\CustomerService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T15:19:06.344Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "ICustomerService.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Services\\ICustomerService.cs",
-              "RelativeDocumentMoniker": "Services\\ICustomerService.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Services\\ICustomerService.cs",
-              "RelativeToolTip": "Services\\ICustomerService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T15:19:17.065Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T15:14:58.688Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T14:13:02.747Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "CustomerController.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\CustomerController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Controllers\\CustomerController.cs",
-              "RelativeToolTip": "Controllers\\CustomerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T15:12:45.549Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
@@ -514,19 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-10-12T13:51:23.656Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 21,
               "Title": "ScaffoldingReadMe.txt",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\ScaffoldingReadMe.txt",
               "RelativeDocumentMoniker": "ScaffoldingReadMe.txt",
@@ -538,7 +404,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 22,
               "Title": "00000000000000_CreateIdentitySchema.Designer.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\Migrations\\00000000000000_CreateIdentitySchema.Designer.cs",
               "RelativeDocumentMoniker": "Data\\Migrations\\00000000000000_CreateIdentitySchema.Designer.cs",
@@ -550,7 +416,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 24,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
@@ -562,7 +428,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 23,
               "Title": "ResetPassword.cshtml.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
@@ -574,7 +440,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 27,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
@@ -586,7 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 25,
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
@@ -598,7 +464,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 28,
               "Title": "Logout.cshtml.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
@@ -610,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 26,
               "Title": "Login.cshtml.cs",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
@@ -622,7 +488,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 29,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
@@ -634,7 +500,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 30,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\_ViewImports.cshtml",
@@ -643,18 +509,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-12T14:12:59.824Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "20251012135757_InitialIdentity.cs",
-              "DocumentMoniker": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\Migrations\\20251012135757_InitialIdentity.cs",
-              "RelativeDocumentMoniker": "Data\\Migrations\\20251012135757_InitialIdentity.cs",
-              "ToolTip": "C:\\ASP.Net\\HappyBakeryManagement\\Data\\Migrations\\20251012135757_InitialIdentity.cs",
-              "RelativeToolTip": "Data\\Migrations\\20251012135757_InitialIdentity.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T13:57:57.527Z"
             }
           ]
         }

@@ -11,23 +11,16 @@ namespace HappyBakeryManagement
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
-            // 👉 Đăng ký cả 2 DbContext
+            // 🔹 1. Kết nối database
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            builder.Services.AddDbContext<HappyBakeryContext>(options =>
-                options.UseSqlServer(connectionString));
-            //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            // 🔹 2. Đăng ký Identity với ApplicationUser (để có thể liên kết với Customer)
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
-                // cấu hình password/lockout nếu    // Cấu hình password / lockout / confirm nếu cần
                 options.Password.RequireDigit = true;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 6;
@@ -36,12 +29,17 @@ namespace HappyBakeryManagement
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
+
+            // 🔹 3. Add MVC & Razor
             builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
+
+            // 🔹 4. Seed dữ liệu (roles + admin)
             SeedDataAsync(app).Wait();
 
-            // Configure the HTTP request pipeline.
+            // 🔹 5. Pipeline
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -49,11 +47,15 @@ namespace HappyBakeryManagement
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
+
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseAuthentication(); // 🔹 BẮT BUỘC có dòng này nếu dùng Identity
             app.UseAuthorization();
 
             app.MapControllerRoute(
@@ -62,50 +64,48 @@ namespace HappyBakeryManagement
             app.MapRazorPages();
 
             app.Run();
-            async Task SeedDataAsync(WebApplication app)
+        }
+
+        private static async Task SeedDataAsync(WebApplication app)
+        {
+            using (var scope = app.Services.CreateScope())
             {
-                using (var scope = app.Services.CreateScope())
+                var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+                string[] roles = new[] { "Admin", "User" };
+                foreach (var r in roles)
                 {
-                    var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                    var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                    if (!await roleMgr.RoleExistsAsync(r))
+                        await roleMgr.CreateAsync(new IdentityRole(r));
+                }
 
-                    // 🔹 1. Tạo roles nếu chưa có
-                    string[] roles = new[] { "Admin", "User" };
-                    foreach (var r in roles)
+                var adminEmail = "admin@local.test";
+                var admin = await userMgr.FindByEmailAsync(adminEmail);
+                if (admin == null)
+                {
+                    admin = new ApplicationUser
                     {
-                        if (!await roleMgr.RoleExistsAsync(r))
-                            await roleMgr.CreateAsync(new IdentityRole(r));
-                    }
+                        UserName = adminEmail,
+                        Email = adminEmail,
+                        EmailConfirmed = true
+                    };
+                    await userMgr.CreateAsync(admin, "Admin@123");
+                    await userMgr.AddToRoleAsync(admin, "Admin");
+                }
 
-                    // 🔹 2. Tạo tài khoản Admin mặc định
-                    var adminEmail = "admin@local.test";
-                    var admin = await userMgr.FindByEmailAsync(adminEmail);
-                    if (admin == null)
+                var userEmail = "user@local.test";
+                var user = await userMgr.FindByEmailAsync(userEmail);
+                if (user == null)
+                {
+                    user = new ApplicationUser
                     {
-                        admin = new IdentityUser
-                        {
-                            UserName = adminEmail,
-                            Email = adminEmail,
-                            EmailConfirmed = true
-                        };
-                        await userMgr.CreateAsync(admin, "Admin@123");
-                        await userMgr.AddToRoleAsync(admin, "Admin");
-                    }
-
-                    // 🔹 3. Tạo tài khoản User mặc định
-                    var userEmail = "user@local.test";
-                    var user = await userMgr.FindByEmailAsync(userEmail);
-                    if (user == null)
-                    {
-                        user = new IdentityUser
-                        {
-                            UserName = userEmail,
-                            Email = userEmail,
-                            EmailConfirmed = true
-                        };
-                        await userMgr.CreateAsync(user, "User@123");
-                        await userMgr.AddToRoleAsync(user, "User");
-                    }
+                        UserName = userEmail,
+                        Email = userEmail,
+                        EmailConfirmed = true
+                    };
+                    await userMgr.CreateAsync(user, "User@123");
+                    await userMgr.AddToRoleAsync(user, "User");
                 }
             }
         }
