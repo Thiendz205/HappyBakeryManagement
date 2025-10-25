@@ -1,5 +1,6 @@
-﻿using HappyBakeryManagement.Data;
+using HappyBakeryManagement.Data;
 using HappyBakeryManagement.Models;
+using HappyBakeryManagement.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,8 @@ namespace HappyBakeryManagement
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
+            //builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+
             // 🔹 2. Đăng ký Identity với ApplicationUser (để có thể liên kết với Customer)
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -30,16 +33,16 @@ namespace HappyBakeryManagement
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
 
-            // 🔹 3. Add MVC & Razor
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
-
+            builder.Services.AddScoped<IOrderServices, OrderServices>();
             var app = builder.Build();
 
-            // 🔹 4. Seed dữ liệu (roles + admin)
-            SeedDataAsync(app).Wait();
-
-            // 🔹 5. Pipeline
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                SeedDataAsync(services).Wait();
+            }
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -55,58 +58,56 @@ namespace HappyBakeryManagement
 
             app.UseRouting();
 
-            app.UseAuthentication(); // 🔹 BẮT BUỘC có dòng này nếu dùng Identity
+            app.UseAuthentication(); 
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Order}/{action=Index}/{id?}");
             app.MapRazorPages();
 
             app.Run();
         }
 
-        private static async Task SeedDataAsync(WebApplication app)
+        private static async Task SeedDataAsync(IServiceProvider services)
         {
-            using (var scope = app.Services.CreateScope())
+            var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
+            var userMgr = services.GetRequiredService<UserManager<ApplicationUser>>();
+
+            string[] roles = new[] { "Admin", "User" };
+
+            foreach (var r in roles)
             {
-                var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                if (!await roleMgr.RoleExistsAsync(r))
+                    await roleMgr.CreateAsync(new IdentityRole(r));
+            }
 
-                string[] roles = new[] { "Admin", "User" };
-                foreach (var r in roles)
+            var adminEmail = "admin@local.test";
+            var admin = await userMgr.FindByEmailAsync(adminEmail);
+            if (admin == null)
+            {
+                admin = new ApplicationUser
                 {
-                    if (!await roleMgr.RoleExistsAsync(r))
-                        await roleMgr.CreateAsync(new IdentityRole(r));
-                }
+                    UserName = adminEmail,
+                    Email = adminEmail,
+                    EmailConfirmed = true
+                };
+                await userMgr.CreateAsync(admin, "Admin@123");
+                await userMgr.AddToRoleAsync(admin, "Admin");
+            }
 
-                var adminEmail = "admin@local.test";
-                var admin = await userMgr.FindByEmailAsync(adminEmail);
-                if (admin == null)
+            var userEmail = "user@local.test";
+            var user = await userMgr.FindByEmailAsync(userEmail);
+            if (user == null)
+            {
+                user = new ApplicationUser
                 {
-                    admin = new ApplicationUser
-                    {
-                        UserName = adminEmail,
-                        Email = adminEmail,
-                        EmailConfirmed = true
-                    };
-                    await userMgr.CreateAsync(admin, "Admin@123");
-                    await userMgr.AddToRoleAsync(admin, "Admin");
-                }
-
-                var userEmail = "user@local.test";
-                var user = await userMgr.FindByEmailAsync(userEmail);
-                if (user == null)
-                {
-                    user = new ApplicationUser
-                    {
-                        UserName = userEmail,
-                        Email = userEmail,
-                        EmailConfirmed = true
-                    };
-                    await userMgr.CreateAsync(user, "User@123");
-                    await userMgr.AddToRoleAsync(user, "User");
-                }
+                    UserName = userEmail,
+                    Email = userEmail,
+                    EmailConfirmed = true
+                };
+                await userMgr.CreateAsync(user, "User@123");
+                await userMgr.AddToRoleAsync(user, "User");
             }
         }
     }
