@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+@model List<HappyBakeryManagement.DTO.OrderDTO>
+
+@{
+    ViewData["Title"] = "Danh sách đơn hàng";
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int totalPages = ViewBag.TotalPages ?? 1;
+}
+
+<!-- Gắn link CSS -->
+
+<div class="main-container">
+    <h2>📦 Danh sách đơn hàng</h2>
+
+    <table class="table-style">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Khách hàng</th>
+                <th>Ngày đặt</th>
+                <th>Địa chỉ giao</th>
+                <th>SĐT</th>
+                <th>Trạng thái</th>
+                <th>Thanh toán</th>
+                <th>Ghi chú</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                int index = (currentPage - 1) * 20 + 1;
+                foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@index</td>
+                        <td>@order.CustomerName</td>
+                        <td>@order.BookingDate.ToString("dd/MM/yyyy")</td>
+                        <td>@order.DeliveryAddress</td>
+                        <td>@order.PhoneNumber</td>
+                        <td>
+                            <span class="status @(order.Status?.ToLower())">@order.Status</span>
+                        </td>
+                        <td>@order.PaymentMethodName</td>
+                        <td>@order.Note</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@order.Id" class="btn btn-edit">✏️ Sửa</a>
+                        </td>
+                    </tr>
+                    index++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="9" class="text-center">Không có đơn hàng nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        @if (currentPage > 1)
+        {
+            <a asp-action="Index" asp-route-page="@(currentPage - 1)" class="page-btn">« Trước</a>
+        }
+
+        <span>Trang @currentPage / @totalPages</span>
+
+        @if (currentPage < totalPages)
+        {
+            <a asp-action="Index" asp-route-page="@(currentPage + 1)" class="page-btn">Tiếp »</a>
+        }
+    </div>
+
+    <div class="add-section">
+        <a asp-action="Add" class="btn btn-add">➕ Thêm đơn hàng</a>
+    </div>
+</div>

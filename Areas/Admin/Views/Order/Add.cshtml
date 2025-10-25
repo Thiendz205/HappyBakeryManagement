@@ -1,0 +1,93 @@
+﻿@model HappyBakeryManagement.Models.Order
+
+@{
+    ViewData["Title"] = "Thêm đơn hàng mới";
+    var customers = ViewBag.Customers as List<HappyBakeryManagement.Models.Customer>;
+    var payments = ViewBag.PaymentMethods as List<HappyBakeryManagement.Models.PaymentMethod>;
+}
+
+<link rel="stylesheet" href="~/css/site-style.css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
+
+<div class="main-container">
+    <h2>➕ Thêm đơn hàng mới</h2>
+
+    <form asp-action="Add" method="post" class="form-style">
+        <div class="form-group">
+            <label>Khách hàng <span style="color:red">*</span></label>
+            <select asp-for="CustomerID" class="form-control select2" required>
+                <option value="">-- Chọn khách hàng --</option>
+                @foreach (var c in customers)
+                {
+                    <option value="@c.Id">@c.FullName</option>
+                }
+            </select>
+            <span asp-validation-for="CustomerID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Phương thức thanh toán <span style="color:red">*</span></label>
+            <select asp-for="PaymentMethodID" class="form-control select2" required>
+                <option value="">-- Chọn phương thức --</option>
+                @foreach (var p in payments)
+                {
+                    <option value="@p.Id">@p.NamePaymentMethod</option>
+                }
+            </select>
+            <span asp-validation-for="PaymentMethodID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Địa chỉ giao hàng <span style="color:red">*</span></label>
+            <input asp-for="DeliveryAddress" class="form-control" required />
+            <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Số điện thoại <span style="color:red">*</span></label>
+            <input asp-for="PhoneNumber"
+                   class="form-control"
+                   required
+                   pattern="[0-9]{9,11}"
+                   title="Số điện thoại phải là 9-11 chữ số"
+                   inputmode="numeric" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Trạng thái <span style="color:red">*</span></label>
+            <select asp-for="Status" class="form-control" required>
+                <option value="Chờ xử lý">Chờ xử lý</option>
+                <option value="Đang giao">Đang giao</option>
+                <option value="Hoàn thành">Hoàn thành</option>
+                <option value="Đã hủy">Đã hủy</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Ghi chú</label>
+            <textarea asp-for="Note" class="form-control"></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-add">💾 Lưu</button>
+            <a asp-action="Index" class="btn btn-cancel">⬅️ Quay lại</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                placeholder: "Tìm hoặc chọn...",
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
+}
