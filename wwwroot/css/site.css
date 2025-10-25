@@ -1,0 +1,72 @@
+﻿.main-menu-wrap {
+    width: 100%;
+}
+
+/* Menu chính */
+.main-menu ul li a {
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+    .main-menu ul li a:hover {
+        color: #ff7f00; /* màu cam nổi bật */
+    }
+
+/* Icon và link bên phải */
+.header-icons a {
+    color: #fff;
+    text-decoration: none;
+}
+
+    .header-icons a:hover {
+        color: #ff7f00;
+    }
+
+/* Login / Register */
+.login-links a {
+    color: #fff;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+    .login-links a:hover {
+        color: #ff7f00;
+    }
+/* ✅ Khi xuống mobile (màn nhỏ hơn 992px) */
+@media (max-width: 991.98px) {
+    .main-menu-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-menu {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+        .main-menu ul {
+            flex-direction: column;
+            text-align: left;
+            width: 100%;
+        }
+
+            .main-menu ul li {
+                margin: 8px 0;
+            }
+
+    .header-icons {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    .login-links {
+        margin-left: 10px;
+    }
+}
+
+
+
+
