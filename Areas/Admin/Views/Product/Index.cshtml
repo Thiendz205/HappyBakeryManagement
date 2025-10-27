@@ -1,0 +1,69 @@
+﻿@using HappyBakeryManagement.DTO
+@{
+    Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+@model IEnumerable<ProductDTO>
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Producr</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Detail</th>
+                            <th>Price</th>
+                            <th>Created date</th>
+                            <th>End date</th>
+                            <th>Category Name</th>
+                            <th>Image</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Detail</th>
+                            <th>Price</th>
+                            <th>Created date</th>
+                            <th>End date</th>
+                            <th>Category Name</th>
+                            <th>Image</th>
+                        </tr>
+                    </tfoot>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.Detail</td>
+                                <td>@item.Price</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.EndDate</td>
+                                <td>@item.CategoryName</td>
+                                <td>@item.Image</td>
+                            </tr>
+                        
+                        }
+                        
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

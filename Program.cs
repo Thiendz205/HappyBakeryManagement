@@ -3,6 +3,7 @@ using HappyBakeryManagement.Models;
 using HappyBakeryManagement.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WebApplication3.Repository;
 
 namespace HappyBakeryManagement
 {
@@ -36,6 +37,8 @@ namespace HappyBakeryManagement
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
             builder.Services.AddScoped<IOrderServices, OrderServices>();
+            builder.Services.AddScoped<IProductServices, ProductService>();
+            builder.Services.AddScoped<ICategoriesServices, CategoriesServices>();
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
