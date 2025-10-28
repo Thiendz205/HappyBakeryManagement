@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model HappyBakeryManagement.DTO.PaymentMethodDTO
+
+<div class="main-container">
+    <h2>➕ Thêm phương thức thanh toán</h2>
+
+    <form asp-action="Add" method="post" novalidate>
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <div class="form-group">
+            <label asp-for="NamePaymentMethod"></label>
+            <input asp-for="NamePaymentMethod" class="form-control" placeholder="Nhập tên phương thức..." />
+            <span asp-validation-for="NamePaymentMethod" class="text-danger"></span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-add">💾 Lưu</button>
+            <a asp-action="Index" class="btn btn-cancel">❌ Hủy</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
