@@ -1,4 +1,5 @@
-﻿using HappyBakeryManagement.Services;
+﻿using HappyBakeryManagement.DTO;
+using HappyBakeryManagement.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +20,29 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
             var categories = _categoriesServices.getCategories();
             return View(categories);
         }
+        [HttpGet]
         public IActionResult Add()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add(CategoriesDTO categoryDto)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _categoriesServices.AddCategory(categoryDto);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+            return View(categoryDto);
         }
     }
 }
