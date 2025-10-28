@@ -1,0 +1,91 @@
+﻿@model List<HappyBakeryManagement.DTO.OrderDetailsDTO>
+
+@{
+    Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Danh sách chi tiết đơn hàng";
+
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
+    int totalPages = ViewBag.TotalPages ?? 1;
+    int i = 1 + ((currentPage - 1) * pageSize);
+}
+
+<div class="main-container">
+    <h2>📦 Danh sách chi tiết đơn hàng</h2>
+
+    <table class="table-style">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Mã đơn hàng</th>
+                <th>Khách hàng</th>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.OrderCode</td>
+                        <td>@item.CustomerName</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@(item.TotalAmount.HasValue? item.TotalAmount.Value.ToString("N0") + " đ" : "-")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-edit">✏️ Sửa</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id"
+                               class="btn btn-delete"
+                               onclick="return confirm('Xác nhận xóa chi tiết này?')">🗑️ Xóa</a>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center">Chưa có chi tiết đơn hàng nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="add-section mb-3">
+        <a asp-action="Add" class="btn btn-add">➕ Thêm chi tiết mới</a>
+    </div>
+
+    <!-- PHÂN TRANG -->
+    @if (totalPages > 1)
+    {
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                @if (currentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { page = currentPage - 1 })">« Trước</a>
+                    </li>
+                }
+
+                @for (int p = 1; p <= totalPages; p++)
+                {
+                    <li class="page-item @(p == currentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = p })">@p</a>
+                    </li>
+                }
+
+                @if (currentPage < totalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { page = currentPage + 1 })">Sau »</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+</div>

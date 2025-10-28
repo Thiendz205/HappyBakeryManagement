@@ -84,7 +84,18 @@
                     <span>Category</span>
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a asp-action="Index" asp-controller="OrderDetails" class="nav-link">
+                    <i class="fas fa-box"></i>
+                    <span>OrderDetails</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-action="Index" asp-controller="PaymentMethod" class="nav-link">
+                    <i class="fas fa-box"></i>
+                    <span>PaymentMethod</span>
+                </a>
+            </li>
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -450,7 +461,7 @@
     <script src="~/js/demo/chart-pie-demo.js"></script>
 
     <script src="~/js/demo/datatables-demo.js"></script>
-
+    @RenderSection("Scripts", required: false)
 
 </body>
 

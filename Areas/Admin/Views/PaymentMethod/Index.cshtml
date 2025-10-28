@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model List<HappyBakeryManagement.DTO.PaymentMethodDTO>
+
+<div class="main-container">
+    <h2>💳 Danh sách phương thức thanh toán</h2>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <table class="table-style">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên phương thức</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count > 0)
+            {
+                int i = 1;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.NamePaymentMethod</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-edit">✏️ Sửa</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-delete"
+                               onclick="return confirm('Bạn có chắc muốn xóa phương thức này không?')">🗑️ Xóa</a>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+            else
+            {
+                <tr><td colspan="3" class="text-center">Không có phương thức nào.</td></tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="add-section">
+        <a asp-action="Add" class="btn btn-add">➕ Thêm phương thức</a>
+    </div>
+</div>
