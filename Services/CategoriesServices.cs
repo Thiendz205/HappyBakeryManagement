@@ -1,5 +1,7 @@
 ﻿using HappyBakeryManagement.Data;
 using HappyBakeryManagement.DTO;
+using HappyBakeryManagement.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HappyBakeryManagement.Services
 {
@@ -10,6 +12,25 @@ namespace HappyBakeryManagement.Services
         {
             _db = db;
         }
+
+        public void AddCategory(CategoriesDTO categoryDto)
+        {
+            var exists = _db.Categories.Any(c => c.Name.ToLower() == categoryDto.Name.ToLower());
+            if (exists)
+            {
+                throw new Exception("Tên danh mục đã tồn tại!");
+            }
+
+            var category = new Category
+            {
+                Name = categoryDto.Name,
+                Description = categoryDto.Description
+            };
+
+            _db.Categories.Add(category);
+            _db.SaveChanges();
+        }
+
 
         public List<CategoriesDTO> getCategories()
         {
