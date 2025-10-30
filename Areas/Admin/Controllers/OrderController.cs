@@ -20,17 +20,41 @@ namespace HappyBakeryManagement.Controllers
             _orderService = orderService;
         }
         private readonly ApplicationDbContext db;
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(string sortColumn = "BookingDate", string sortOrder = "asc", int page = 1)
         {
             int pageSize = 20;
-            var orders = _orderService.GetOrdersPaged(page, pageSize);
+
+            // Lấy danh sách có sắp xếp và phân trang
+            var orders = _orderService.GetOrdersPaged(page, pageSize, sortColumn, sortOrder);
             int totalOrders = _orderService.GetTotalOrders();
+
+            // Truyền thông tin cho View
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
+            ViewBag.SortColumn = sortColumn;
+            ViewBag.SortOrder = sortOrder;
+
+            return View(orders);
+        }
+        [HttpGet]
+        public IActionResult Search(string customerName, string phoneNumber, string status, string paymentMethodName, int page = 1)
+        {
+            int pageSize = 20;
+
+            var orders = _orderService.SearchOrders(customerName, phoneNumber, status, paymentMethodName, page, pageSize);
+            int totalOrders = _orderService.GetTotalSearchedOrders(customerName, phoneNumber, status, paymentMethodName);
 
             ViewBag.CurrentPage = page;
             ViewBag.TotalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
 
-            return View(orders);
+            ViewBag.CustomerName = customerName;
+            ViewBag.PhoneNumber = phoneNumber;
+            ViewBag.Status = status;
+            ViewBag.PaymentMethodName = paymentMethodName;
+
+            return View("Index", orders);
         }
+
         [HttpGet]
         public IActionResult Add()
         {

@@ -15,21 +15,86 @@
 
 <div class="main-container">
     <h2>📦 Danh sách đơn hàng</h2>
+    <form asp-action="Search" method="get" class="search-form row mb-3">
+        <div class="col-md-3">
+            <input type="text" name="customerName" class="form-control" placeholder="🔍 Tên khách hàng" value="@ViewBag.CustomerName" />
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="phoneNumber" class="form-control" placeholder="📞 Số điện thoại" value="@ViewBag.PhoneNumber" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="status" class="form-control" placeholder="📦 Trạng thái" value="@ViewBag.Status" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="paymentMethodName" class="form-control" placeholder="💳 Thanh toán" value="@ViewBag.PaymentMethodName" />
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+            <button type="submit" class="btn btn-primary flex-fill">Tìm kiếm</button>
+            <a asp-action="Index" class="btn btn-secondary flex-fill">🔄 Làm mới</a>
+        </div>
+    </form>
 
     <table class="table-style">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Khách hàng</th>
-                <th>Ngày đặt</th>
+
+                <th>
+                    <a asp-action="Index" asp-route-sortColumn="CustomerName"
+                       asp-route-sortOrder="@(ViewBag.SortColumn == "CustomerName" && ViewBag.SortOrder == "asc" ? "desc" : "asc")"
+                       class="sortable">
+                        Khách hàng
+                        @if (ViewBag.SortColumn == "CustomerName")
+                        {
+                            <span>@(ViewBag.SortOrder == "asc" ? "▲" : "▼")</span>
+                        }
+                    </a>
+                </th>
+
+                <th>
+                    <a asp-action="Index" asp-route-sortColumn="BookingDate"
+                       asp-route-sortOrder="@(ViewBag.SortColumn == "BookingDate" && ViewBag.SortOrder == "asc" ? "desc" : "asc")"
+                       class="sortable">
+                        Ngày đặt
+                        @if (ViewBag.SortColumn == "BookingDate")
+                        {
+                            <span>@(ViewBag.SortOrder == "asc" ? "▲" : "▼")</span>
+                        }
+                    </a>
+                </th>
+
                 <th>Địa chỉ giao</th>
                 <th>SĐT</th>
-                <th>Trạng thái</th>
-                <th>Thanh toán</th>
+
+                <th>
+                    <a asp-action="Index" asp-route-sortColumn="Status"
+                       asp-route-sortOrder="@(ViewBag.SortColumn == "Status" && ViewBag.SortOrder == "asc" ? "desc" : "asc")"
+                       class="sortable">
+                        Trạng thái
+                        @if (ViewBag.SortColumn == "Status")
+                        {
+                            <span>@(ViewBag.SortOrder == "asc" ? "▲" : "▼")</span>
+                        }
+                    </a>
+                </th>
+
+                <th>
+                    <a asp-action="Index" asp-route-sortColumn="PaymentMethodName"
+                       asp-route-sortOrder="@(ViewBag.SortColumn == "PaymentMethodName" && ViewBag.SortOrder == "asc" ? "desc" : "asc")"
+                       class="sortable">
+                        Thanh toán
+                        @if (ViewBag.SortColumn == "PaymentMethodName")
+                        {
+                            <span>@(ViewBag.SortOrder == "asc" ? "▲" : "▼")</span>
+                        }
+                    </a>
+                </th>
+
                 <th>Ghi chú</th>
                 <th>Hành động</th>
             </tr>
         </thead>
+
         <tbody>
             @if (Model != null && Model.Count > 0)
             {
@@ -42,9 +107,7 @@
                         <td>@order.BookingDate.ToString("dd/MM/yyyy")</td>
                         <td>@order.DeliveryAddress</td>
                         <td>@order.PhoneNumber</td>
-                        <td>
-                            <span class="status @(order.Status?.ToLower())">@order.Status</span>
-                        </td>
+                        <td><span class="status @(order.Status?.ToLower())">@order.Status</span></td>
                         <td>@order.PaymentMethodName</td>
                         <td>@order.Note</td>
                         <td>
