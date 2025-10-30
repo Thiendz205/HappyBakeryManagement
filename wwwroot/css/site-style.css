@@ -1,87 +1,90 @@
-﻿/* ======= Base styles ======= */
-body {
-    font-family: "Segoe UI", sans-serif;
-    background-color: #f7f9fc;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-h1, h2, h3 {
-    color: #4a90e2;
-    font-weight: 600;
-}
-
-/* ======= Container ======= */
+﻿/* ======= Làm bảng to hơn, dễ đọc hơn ======= */
 .main-container {
-    width: 90%;
-    max-width: 1200px;
+    width: 95%;
+    max-width: 1500px; /* ✅ Tăng độ rộng tối đa */
     margin: 40px auto;
     background: #fff;
-    border-radius: 12px;
-    padding: 20px 30px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border-radius: 16px;
+    padding: 30px 40px; /* ✅ Nới padding cho thoáng */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
 
-/* ======= Table ======= */
+/* ======= Table cải tiến ======= */
 .table-style {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 15px; /* ✅ Dễ đọc hơn */
 }
 
-    .table-style th {
+    .table-style thead {
         background-color: #4a90e2;
-        color: white;
-        text-align: left;
-        padding: 10px;
+        color: #fff;
     }
 
+    .table-style th,
     .table-style td {
-        padding: 10px;
-        border-bottom: 1px solid #eee;
+        padding: 14px 16px; /* ✅ Ô to và đều */
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table-style th {
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+    .table-style tr:nth-child(even) {
+        background-color: #f9fbff;
     }
 
     .table-style tr:hover {
-        background-color: #f1f7ff;
+        background-color: #eef5ff;
+        transition: background 0.2s;
     }
 
-/* ======= Buttons ======= */
-.btn {
-    display: inline-block;
-    border-radius: 6px;
-    padding: 8px 14px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.2s;
-}
-
+/* ======= Nút hành động ======= */
 .btn-edit {
     background-color: #ffca28;
     color: #222;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 500;
 }
 
     .btn-edit:hover {
         background-color: #ffc107;
     }
 
-.btn-add {
-    background-color: #4caf50;
-    color: white;
+/* ======= Bố cục tìm kiếm ======= */
+.search-form {
+    margin-bottom: 25px;
 }
 
-    .btn-add:hover {
-        background-color: #43a047;
+    .search-form input {
+        height: 42px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        padding-left: 12px;
     }
+
+/* ======= Phân trang ======= */
+.pagination {
+    text-align: center;
+    margin: 30px 0 10px;
+}
 
 .page-btn {
     background: #e0e0e0;
     color: #333;
-    padding: 6px 12px;
-    border-radius: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
     margin: 0 5px;
     text-decoration: none;
-    transition: 0.2s;
+    font-weight: 500;
 }
 
     .page-btn:hover {
@@ -89,23 +92,15 @@ h1, h2, h3 {
         color: white;
     }
 
-/* ======= Pagination ======= */
-.pagination {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.add-section {
-    text-align: center;
-    margin-top: 30px;
-}
-
-/* ======= Status badges ======= */
+/* ======= Trạng thái badge đẹp hơn ======= */
 .status {
-    padding: 5px 8px;
-    border-radius: 5px;
+    padding: 6px 10px;
+    border-radius: 6px;
     font-weight: 600;
     font-size: 0.9em;
+    display: inline-block;
+    min-width: 100px;
+    text-align: center;
 }
 
     .status.pending {
@@ -122,59 +117,17 @@ h1, h2, h3 {
         background-color: #f8d7da;
         color: #721c24;
     }
-.main-container {
-    background: #fff;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    max-width: 700px;
-    margin: 40px auto;
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 25px;
-}
-
-.form-group {
-    margin-bottom: 18px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-.btn {
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: none;
+.sortable {
+    color: white;
     text-decoration: none;
-    cursor: pointer;
-    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s ease;
 }
 
-.btn-add {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.btn-cancel {
-    background-color: #aaa;
-    color: white;
-    margin-left: 10px;
-}
-
-.btn:hover {
-    opacity: 0.9;
-}
-
-.form-actions {
-    text-align: center;
-    margin-top: 25px;
-}
-
+    .sortable:hover {
+        color: #b9f2d0; /* xanh mint nhạt */
+        text-decoration: none;
+    }
 

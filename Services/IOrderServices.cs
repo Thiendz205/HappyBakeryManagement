@@ -11,7 +11,9 @@ namespace HappyBakeryManagement.Services
         bool UpdateOrder(Order order);
         List<Customer> GetAllCustomers();
         List<PaymentMethod> GetAllPaymentMethods();
-        List<OrderDTO> GetOrdersPaged(int page, int pageSize);
+        public List<OrderDTO> GetOrdersPaged(int page, int pageSize, string sortColumn = "BookingDate", string sortOrder = "asc");
         int GetTotalOrders();
+        List<OrderDTO> SearchOrders(string customerName, string phoneNumber, string status, string paymentMethodName, int page, int pageSize);
+        int GetTotalSearchedOrders(string customerName, string phoneNumber, string status, string paymentMethodName);
     }
 }

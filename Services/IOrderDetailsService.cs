@@ -15,5 +15,10 @@ namespace HappyBakeryManagement.Services
         public OrderDetailsDTO? FindById(int id);
         public List<OrderDetailsDTO> GetPaged(int page, int pageSize);
         public int GetTotalCount();
+        public List<OrderDetailsDTO> GetFilteredAndSortedPaged(
+   string? customerName, string? productName,
+   string? sortColumn, string? sortOrder,
+   int page, int pageSize);
+        public int GetFilteredCount(string? customerName, string? productName);
     }
 }
