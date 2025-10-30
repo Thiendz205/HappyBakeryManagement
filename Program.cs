@@ -41,6 +41,7 @@ namespace HappyBakeryManagement
             builder.Services.AddScoped<ICategoriesServices, CategoriesServices>();
             builder.Services.AddScoped<IPaymentMethodServices, PaymentMethodServices>();
             builder.Services.AddScoped<IOrderDetailsService, OrderDetailsService>();
+            builder.Services.AddScoped<IEvaluteServices, EvaluteServices>();
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
