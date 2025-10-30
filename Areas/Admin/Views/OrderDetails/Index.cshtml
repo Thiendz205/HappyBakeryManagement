@@ -5,33 +5,102 @@
     ViewData["Title"] = "Danh sách chi tiết đơn hàng";
 
     int currentPage = ViewBag.CurrentPage ?? 1;
-    int pageSize = ViewBag.PageSize ?? 10;
     int totalPages = ViewBag.TotalPages ?? 1;
-    int i = 1 + ((currentPage - 1) * pageSize);
 }
 
 <div class="main-container">
-    <h2>📦 Danh sách chi tiết đơn hàng</h2>
+    <h2>📋 Danh sách chi tiết đơn hàng</h2>
 
+    <!-- 🔍 Tìm kiếm -->
+    <form asp-action="Index" method="get" class="search-form row mb-3">
+        <div class="col-md-4">
+            <input type="text" name="customerName" class="form-control" placeholder="👤 Tên khách hàng" value="@ViewBag.CustomerName" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="productName" class="form-control" placeholder="🍰 Tên sản phẩm" value="@ViewBag.ProductName" />
+        </div>
+        <div class="col-md-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary flex-fill">Tìm kiếm</button>
+            <a asp-action="Index" class="btn btn-secondary flex-fill">🔄 Làm mới</a>
+        </div>
+    </form>
+
+    <!-- 📦 Bảng -->
     <table class="table-style">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Mã đơn hàng</th>
-                <th>Khách hàng</th>
-                <th>Sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Tổng tiền</th>
+                <th>
+                    <a asp-action="Index"
+                       asp-route-sortColumn="OrderCode"
+                       asp-route-sortOrder="@(ViewBag.SortColumn == "OrderCode" && ViewBag.SortOrder == "asc" ? "desc" : "asc")"
+                       class="sortable">
+                        Mã đơn hàng
+                        @if (ViewBag.SortColumn == "OrderCode")
+                        {
+                            <span>@(ViewBag.SortOrder == "asc" ? "▲" : "▼")</span>
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index"
+                       asp-route-sortColumn="CustomerName"
+                       asp-route-sortOrder="@(ViewBag.SortColumn == "CustomerName" && ViewBag.SortOrder == "asc" ? "desc" : "asc")"
+                       class="sortable">
+                        Khách hàng
+                        @if (ViewBag.SortColumn == "CustomerName")
+                        {
+                            <span>@(ViewBag.SortOrder == "asc" ? "▲" : "▼")</span>
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index"
+                       asp-route-sortColumn="ProductName"
+                       asp-route-sortOrder="@(ViewBag.SortColumn == "ProductName" && ViewBag.SortOrder == "asc" ? "desc" : "asc")"
+                       class="sortable">
+                        Sản phẩm
+                        @if (ViewBag.SortColumn == "ProductName")
+                        {
+                            <span>@(ViewBag.SortOrder == "asc" ? "▲" : "▼")</span>
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index"
+                       asp-route-sortColumn="Quantity"
+                       asp-route-sortOrder="@(ViewBag.SortColumn == "Quantity" && ViewBag.SortOrder == "asc" ? "desc" : "asc")"
+                       class="sortable">
+                        Số lượng
+                        @if (ViewBag.SortColumn == "Quantity")
+                        {
+                            <span>@(ViewBag.SortOrder == "asc" ? "▲" : "▼")</span>
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index"
+                       asp-route-sortColumn="TotalAmount"
+                       asp-route-sortOrder="@(ViewBag.SortColumn == "TotalAmount" && ViewBag.SortOrder == "asc" ? "desc" : "asc")"
+                       class="sortable">
+                        Tổng tiền
+                        @if (ViewBag.SortColumn == "TotalAmount")
+                        {
+                            <span>@(ViewBag.SortOrder == "asc" ? "▲" : "▼")</span>
+                        }
+                    </a>
+                </th>
                 <th>Hành động</th>
             </tr>
         </thead>
         <tbody>
             @if (Model != null && Model.Any())
             {
+                int index = (currentPage - 1) * 10 + 1;
                 foreach (var item in Model)
                 {
                     <tr>
-                        <td>@i</td>
+                        <td>@index</td>
                         <td>@item.OrderCode</td>
                         <td>@item.CustomerName</td>
                         <td>@item.ProductName</td>
@@ -39,53 +108,39 @@
                         <td>@(item.TotalAmount.HasValue? item.TotalAmount.Value.ToString("N0") + " đ" : "-")</td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-edit">✏️ Sửa</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id"
-                               class="btn btn-delete"
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-delete"
                                onclick="return confirm('Xác nhận xóa chi tiết này?')">🗑️ Xóa</a>
                         </td>
                     </tr>
-                    i++;
+                    index++;
                 }
             }
             else
             {
                 <tr>
-                    <td colspan="7" class="text-center">Chưa có chi tiết đơn hàng nào.</td>
+                    <td colspan="7" class="text-center">Không có chi tiết đơn hàng nào.</td>
                 </tr>
             }
         </tbody>
     </table>
 
-    <div class="add-section mb-3">
-        <a asp-action="Add" class="btn btn-add">➕ Thêm chi tiết mới</a>
+    <!-- 🔹 Phân trang -->
+    <div class="pagination">
+        @if (currentPage > 1)
+        {
+            <a asp-action="Index" asp-route-page="@(currentPage - 1)" class="page-btn">« Trước</a>
+        }
+
+        <span>Trang @currentPage / @totalPages</span>
+
+        @if (currentPage < totalPages)
+        {
+            <a asp-action="Index" asp-route-page="@(currentPage + 1)" class="page-btn">Sau »</a>
+        }
     </div>
 
-    <!-- PHÂN TRANG -->
-    @if (totalPages > 1)
-    {
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                @if (currentPage > 1)
-                {
-                    <li class="page-item">
-                        <a class="page-link" href="@Url.Action("Index", new { page = currentPage - 1 })">« Trước</a>
-                    </li>
-                }
-
-                @for (int p = 1; p <= totalPages; p++)
-                {
-                    <li class="page-item @(p == currentPage ? "active" : "")">
-                        <a class="page-link" href="@Url.Action("Index", new { page = p })">@p</a>
-                    </li>
-                }
-
-                @if (currentPage < totalPages)
-                {
-                    <li class="page-item">
-                        <a class="page-link" href="@Url.Action("Index", new { page = currentPage + 1 })">Sau »</a>
-                    </li>
-                }
-            </ul>
-        </nav>
-    }
+    <!-- 🔹 Nút thêm -->
+    <div class="add-section">
+        <a asp-action="Add" class="btn btn-add">➕ Thêm chi tiết đơn hàng</a>
+    </div>
 </div>

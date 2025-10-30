@@ -16,20 +16,22 @@ namespace HappyBakeryManagement.Controllers
         {
             _service = service;
         }
-        public IActionResult Index(int page = 1, int pageSize = 10)
+        public IActionResult Index(
+      string? customerName, string? productName,
+      string? sortColumn, string? sortOrder,
+      int page = 1, int pageSize = 10)
         {
-            var all = _service.GetAll();
-            int totalItems = all.Count;
-            var paged = all
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            var data = _service.GetFilteredAndSortedPaged(customerName, productName, sortColumn, sortOrder, page, pageSize);
+            int total = _service.GetFilteredCount(customerName, productName);
 
             ViewBag.CurrentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            ViewBag.TotalPages = (int)Math.Ceiling((double)total / pageSize);
+            ViewBag.SortColumn = sortColumn;
+            ViewBag.SortOrder = sortOrder;
+            ViewBag.CustomerName = customerName;
+            ViewBag.ProductName = productName;
 
-            return View(paged);
+            return View(data);
         }
 
         [HttpGet]

@@ -35,8 +35,66 @@ namespace HappyBakeryManagement.Services
                         };
             return query.ToList();
         }
+        public List<OrderDTO> SearchOrders(string customerName, string phoneNumber, string status, string paymentMethodName, int page, int pageSize)
+        {
+            var query = from o in _db.Orders
+                        .Include(o => o.Customer)
+                        .Include(o => o.PaymentMethod)
+                        select new OrderDTO
+                        {
+                            Id = o.Id,
+                            BookingDate = o.BookingDate,
+                            Status = o.Status,
+                            DeliveryAddress = o.DeliveryAddress,
+                            PhoneNumber = o.PhoneNumber,
+                            Note = o.Note,
+                            PaymentMethodID = o.PaymentMethodID,
+                            PaymentMethodName = o.PaymentMethod.NamePaymentMethod,
+                            CustomerID = o.CustomerID,
+                            CustomerName = o.Customer.FullName
+                        };
 
-        // 🔹 Lấy tất cả khách hàng (đổ combobox)
+            if (!string.IsNullOrEmpty(customerName))
+                query = query.Where(o => o.CustomerName.Contains(customerName));
+
+            if (!string.IsNullOrEmpty(phoneNumber))
+                query = query.Where(o => o.PhoneNumber.Contains(phoneNumber));
+
+            if (!string.IsNullOrEmpty(status))
+                query = query.Where(o => o.Status.Contains(status));
+
+            if (!string.IsNullOrEmpty(paymentMethodName))
+                query = query.Where(o => o.PaymentMethodName.Contains(paymentMethodName));
+
+            return query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public int GetTotalSearchedOrders(string customerName, string phoneNumber, string status, string paymentMethodName)
+        {
+            var query = _db.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.PaymentMethod)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(customerName))
+                query = query.Where(o => o.Customer.FullName.Contains(customerName));
+
+            if (!string.IsNullOrEmpty(phoneNumber))
+                query = query.Where(o => o.PhoneNumber.Contains(phoneNumber));
+
+            if (!string.IsNullOrEmpty(status))
+                query = query.Where(o => o.Status.Contains(status));
+
+            if (!string.IsNullOrEmpty(paymentMethodName))
+                query = query.Where(o => o.PaymentMethod.NamePaymentMethod.Contains(paymentMethodName));
+
+            return query.Count();
+        }
+
+
         public List<Customer> GetAllCustomers()
         {
             return _db.Customers.ToList();
@@ -81,14 +139,45 @@ namespace HappyBakeryManagement.Services
             }
             return false;
         }
-        // 🔹 Lấy danh sách theo trang (phân trang)
-        public List<OrderDTO> GetOrdersPaged(int page, int pageSize)
+        public List<OrderDTO> GetOrdersPaged(int page, int pageSize, string sortColumn = "BookingDate", string sortOrder = "asc")
         {
-            return GetAllOrders()
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            var query = from o in _db.Orders
+                        .Include(o => o.Customer)
+                        .Include(o => o.PaymentMethod)
+                        select new OrderDTO
+                        {
+                            Id = o.Id,
+                            BookingDate = o.BookingDate,
+                            Status = o.Status,
+                            DeliveryAddress = o.DeliveryAddress,
+                            PhoneNumber = o.PhoneNumber,
+                            Note = o.Note,
+                            PaymentMethodID = o.PaymentMethodID,
+                            PaymentMethodName = o.PaymentMethod.NamePaymentMethod,
+                            CustomerID = o.CustomerID,
+                            CustomerName = o.Customer.FullName
+                        };
+
+            // ✅ Sắp xếp theo cột được chọn
+            switch (sortColumn)
+            {
+                case "CustomerName":
+                    query = (sortOrder == "asc") ? query.OrderBy(o => o.CustomerName) : query.OrderByDescending(o => o.CustomerName);
+                    break;
+                case "Status":
+                    query = (sortOrder == "asc") ? query.OrderBy(o => o.Status) : query.OrderByDescending(o => o.Status);
+                    break;
+                case "PaymentMethodName":
+                    query = (sortOrder == "asc") ? query.OrderBy(o => o.PaymentMethodName) : query.OrderByDescending(o => o.PaymentMethodName);
+                    break;
+                default:
+                    query = (sortOrder == "asc") ? query.OrderBy(o => o.BookingDate) : query.OrderByDescending(o => o.BookingDate);
+                    break;
+            }
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
         }
+
 
         // 🔹 Đếm tổng số đơn
         public int GetTotalOrders()

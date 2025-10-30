@@ -34,6 +34,87 @@ namespace HappyBakeryManagement.Services
                 })
                 .ToList();
         }
+        public List<OrderDetailsDTO> GetFilteredAndSortedPaged(
+    string? customerName, string? productName,
+    string? sortColumn, string? sortOrder,
+    int page, int pageSize)
+        {
+            var query = _db.OrderDetails
+                .Include(o => o.Order).ThenInclude(c => c.Customer)
+                .Include(p => p.Product)
+                .AsQueryable();
+
+            // 🔍 Tìm kiếm
+            if (!string.IsNullOrEmpty(customerName))
+                query = query.Where(x => x.Order.Customer.FullName.Contains(customerName));
+
+            if (!string.IsNullOrEmpty(productName))
+                query = query.Where(x => x.Product.Name.Contains(productName));
+
+            // 🔽 Sắp xếp
+            switch (sortColumn)
+            {
+                case "CustomerName":
+                    query = sortOrder == "desc"
+                        ? query.OrderByDescending(x => x.Order.Customer.FullName)
+                        : query.OrderBy(x => x.Order.Customer.FullName);
+                    break;
+
+                case "ProductName":
+                    query = sortOrder == "desc"
+                        ? query.OrderByDescending(x => x.Product.Name)
+                        : query.OrderBy(x => x.Product.Name);
+                    break;
+
+                case "Quantity":
+                    query = sortOrder == "desc"
+                        ? query.OrderByDescending(x => x.Quantity)
+                        : query.OrderBy(x => x.Quantity);
+                    break;
+
+                case "TotalAmount":
+                    query = sortOrder == "desc"
+                        ? query.OrderByDescending(x => x.TotalAmount)
+                        : query.OrderBy(x => x.TotalAmount);
+                    break;
+
+                default:
+                    query = query.OrderByDescending(x => x.Id);
+                    break;
+            }
+
+            // 📄 Phân trang
+            return query.Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(x => new OrderDetailsDTO
+                {
+                    Id = x.Id,
+                    OrderID = x.OrderID,
+                    ProductID = x.ProductID,
+                    Quantity = x.Quantity,
+                    TotalAmount = x.TotalAmount,
+                    ProductName = x.Product.Name,
+                    OrderCode = "Order#" + x.OrderID,
+                    CustomerName = x.Order.Customer.FullName
+                })
+                .ToList();
+        }
+
+        public int GetFilteredCount(string? customerName, string? productName)
+        {
+            var query = _db.OrderDetails
+                .Include(o => o.Order).ThenInclude(c => c.Customer)
+                .Include(p => p.Product)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(customerName))
+                query = query.Where(x => x.Order.Customer.FullName.Contains(customerName));
+
+            if (!string.IsNullOrEmpty(productName))
+                query = query.Where(x => x.Product.Name.Contains(productName));
+
+            return query.Count();
+        }
 
         public OrderDetailsDTO? GetById(int id)
         {
