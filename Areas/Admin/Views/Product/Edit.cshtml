@@ -1,0 +1,79 @@
+﻿@model HappyBakeryManagement.DTO.ProductDTO
+@{
+    Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Chỉnh sửa sản phẩm";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+    <form asp-action="Edit" asp-controller="Product" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label">Tên sản phẩm</label>
+            <input asp-for="Name" class="form-control" placeholder="Nhập tên sản phẩm" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Detail" class="form-label">Mô tả chi tiết</label>
+            <textarea asp-for="Detail" class="form-control" rows="3" placeholder="Nhập mô tả sản phẩm"></textarea>
+            <span asp-validation-for="Detail" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Price" class="form-label">Giá</label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="CreatedDate" class="form-label">Ngày tạo</label>
+                <input asp-for="CreatedDate" class="form-control" type="date" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="EndDate" class="form-label">Ngày kết thúc</label>
+                <input asp-for="EndDate" class="form-control" type="date" />
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Danh mục</label>
+            <select asp-for="CategoryID" asp-items="ViewBag.CategoryList" class="form-control form-control-lg">
+                <option value="">-- Chọn danh mục --</option>
+            </select>
+            <span asp-validation-for="CategoryID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Ảnh hiện tại</label><br />
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <img src="~/images/products/@Model.Image" alt="@Model.Name" width="120" class="img-thumbnail shadow-sm" />
+            }
+            else
+            {
+                <p class="text-muted fst-italic">Chưa có ảnh</p>
+            }
+        </div>
+
+        <div class="form-group mb-4">
+            <label asp-for="ImageFile" class="form-label">Chọn ảnh mới (nếu muốn thay)</label>
+            <input asp-for="ImageFile" class="form-control-file" accept="image/*" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success px-4 me-2">
+                <i class="fas fa-save"></i> Lưu thay đổi
+            </button>
+            <a asp-action="Index" asp-controller="Product" class="btn btn-secondary px-4">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </a>
+        </div>
+    </form>
+</div>
+

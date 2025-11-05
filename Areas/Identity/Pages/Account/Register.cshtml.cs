@@ -121,7 +121,10 @@ namespace HappyBakeryManagement.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    // 🔹 Đảm bảo role "User" tồn tại
                     await _userManager.AddToRoleAsync(user, "User");
+
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -146,6 +149,7 @@ namespace HappyBakeryManagement.Areas.Identity.Pages.Account
                         return LocalRedirect(returnUrl);
                     }
                 }
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);

@@ -10,6 +10,7 @@ namespace HappyBakeryManagement.Services
         Task AddAsync(ProductDTO productDTO);
         void DeleteProduct(int id);
         ProductDTO GetProductById(int id);
+        void UpdateProduct(ProductDTO dto);
 
 
 

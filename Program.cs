@@ -20,35 +20,40 @@ namespace HappyBakeryManagement
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            //builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
-
-            // 🔹 2. Đăng ký Identity với ApplicationUser (để có thể liên kết với Customer)
+            // 🔹 2. Cấu hình Identity
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = true;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 6;
-                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedAccount = false;
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
 
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddRazorPages();
+            // 🔹 3. Đăng ký Service
             builder.Services.AddScoped<IOrderServices, OrderServices>();
             builder.Services.AddScoped<IProductServices, ProductService>();
             builder.Services.AddScoped<ICategoriesServices, CategoriesServices>();
             builder.Services.AddScoped<IPaymentMethodServices, PaymentMethodServices>();
             builder.Services.AddScoped<IOrderDetailsService, OrderDetailsService>();
             builder.Services.AddScoped<IEvaluteServices, EvaluteServices>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
+
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
+
             var app = builder.Build();
 
+            // 🔹 4. Gọi SeedDataAsync để tạo role + user mặc định
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 SeedDataAsync(services).Wait();
             }
+
+            // 🔹 5. Middleware pipeline
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -61,12 +66,11 @@ namespace HappyBakeryManagement
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
-            app.UseAuthentication(); 
+            app.UseAuthentication();
             app.UseAuthorization();
 
+            // 🔹 6. Cấu hình route
             app.MapControllerRoute(
                 name: "areas",
                 pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
@@ -79,6 +83,7 @@ namespace HappyBakeryManagement
             app.Run();
         }
 
+        // ✅ 7. Hàm SeedDataAsync
         private static async Task SeedDataAsync(IServiceProvider services)
         {
             var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
@@ -86,12 +91,14 @@ namespace HappyBakeryManagement
 
             string[] roles = new[] { "Admin", "User" };
 
+            // 🔹 Tạo Role nếu chưa có
             foreach (var r in roles)
             {
                 if (!await roleMgr.RoleExistsAsync(r))
                     await roleMgr.CreateAsync(new IdentityRole(r));
             }
 
+            // 🔹 Tạo tài khoản Admin mặc định
             var adminEmail = "admin@local.test";
             var admin = await userMgr.FindByEmailAsync(adminEmail);
             if (admin == null)
@@ -104,20 +111,6 @@ namespace HappyBakeryManagement
                 };
                 await userMgr.CreateAsync(admin, "Admin@123");
                 await userMgr.AddToRoleAsync(admin, "Admin");
-            }
-
-            var userEmail = "user@local.test";
-            var user = await userMgr.FindByEmailAsync(userEmail);
-            if (user == null)
-            {
-                user = new ApplicationUser
-                {
-                    UserName = userEmail,
-                    Email = userEmail,
-                    EmailConfirmed = true
-                };
-                await userMgr.CreateAsync(user, "User@123");
-                await userMgr.AddToRoleAsync(user, "User");
             }
         }
     }

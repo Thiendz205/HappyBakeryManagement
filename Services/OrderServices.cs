@@ -184,6 +184,52 @@ namespace HappyBakeryManagement.Services
         {
             return _db.Orders.Count();
         }
+        public bool PlaceOrder(int customerId, string address, string phone, string? note, int paymentMethodId)
+        {
+            // Lấy danh sách sản phẩm trong giỏ hàng của khách
+            var cartItems = _db.Carts
+                .Include(c => c.Product)
+                .Where(c => c.CustomerID == customerId)
+                .ToList();
 
+            if (cartItems == null || cartItems.Count == 0)
+                throw new InvalidOperationException("Giỏ hàng của bạn đang trống.");
+
+            // Tạo đơn hàng mới
+            var order = new Order
+            {
+                BookingDate = DateTime.Now,
+                CustomerID = customerId,
+                DeliveryAddress = address,
+                PhoneNumber = phone,
+                Note = note,
+                PaymentMethodID = paymentMethodId,
+                Status = "Chờ xác nhận"
+            };
+
+            _db.Orders.Add(order);
+            _db.SaveChanges(); // cần Save để có OrderID
+
+            // Thêm chi tiết đơn hàng
+            foreach (var item in cartItems)
+            {
+                var orderDetail = new OrderDetails
+                {
+                    OrderID = order.Id,
+                    ProductID = item.ProductId,
+                    Quantity = item.Quantity,
+                    TotalAmount = item.Quantity * item.Product.Price
+                };
+                _db.OrderDetails.Add(orderDetail);
+            }
+
+            // Xóa giỏ hàng
+            _db.Carts.RemoveRange(cartItems);
+
+            // Lưu thay đổi
+            _db.SaveChanges();
+
+            return true;
+        }
     }
 }
