@@ -55,14 +55,24 @@ namespace WebApplication3.Repository
 
         public ProductDTO GetProductById(int id)
         {
-            return _db.Products
+            var product = _db.Products
+                .Include(p => p.Category)
                 .Where(p => p.Id == id)
                 .Select(p => new ProductDTO
                 {
                     Id = p.Id,
                     Name = p.Name,
+                    Detail = p.Detail,
+                    Price = p.Price,
+                    CreatedDate = p.CreatedDate,
+                    EndDate = p.EndDate,
+                    CategoryID = p.Category.Id,
+                    CategoryName = p.Category.Name,
                     Image = p.Image
-                }).FirstOrDefault();
+                })
+                .FirstOrDefault();
+
+            return product;
         }
 
         public void DeleteProduct(int id)
@@ -74,6 +84,24 @@ namespace WebApplication3.Repository
                 _db.SaveChanges();
             }
         }
+
+        public void UpdateProduct(ProductDTO dto)
+        {
+            var p = _db.Products.FirstOrDefault(x => x.Id == dto.Id);
+            if (p == null) throw new Exception("Không tìm thấy sản phẩm.");
+
+            p.Name = dto.Name;
+            p.Detail = dto.Detail;
+            p.Price = dto.Price;
+            p.CreatedDate = dto.CreatedDate;
+            p.EndDate = dto.EndDate;
+            p.CategoryId = dto.CategoryID;
+            p.Image = dto.Image;
+
+            _db.Products.Update(p);
+            _db.SaveChanges();
+        }
+
 
     }
 }

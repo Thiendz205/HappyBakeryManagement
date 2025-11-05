@@ -40,7 +40,6 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Add(ProductDTO productDTO)
         {
-            // Nạp lại danh mục cho dropdown (dù ModelState lỗi vẫn cần)
             var categories = _categoryService.GetNameAndIDCategory();
             ViewBag.CategoryList = new SelectList(categories, "Id", "Name");
 
@@ -52,10 +51,8 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
 
             try
             {
-                // ✅ Kiểm tra ảnh upload
                 if (productDTO.ImageFile != null)
                 {
-                    // Kiểm tra định dạng hợp lệ (đuôi file)
                     var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
                     var extension = Path.GetExtension(productDTO.ImageFile.FileName).ToLowerInvariant();
 
@@ -65,7 +62,6 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
                         return View(productDTO);
                     }
 
-                    // Kiểm tra MIME type
                     if (productDTO.ImageFile.ContentType != "image/jpeg" &&
                         productDTO.ImageFile.ContentType != "image/png")
                     {
@@ -73,9 +69,8 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
                         return View(productDTO);
                     }
 
-                    // ✅ Lưu ảnh hợp lệ
                     string uploadsFolder = Path.Combine(_env.WebRootPath, "images/products");
-                    Directory.CreateDirectory(uploadsFolder); // an toàn, không lỗi nếu tồn tại
+                    Directory.CreateDirectory(uploadsFolder); 
 
                     string uniqueFileName = Guid.NewGuid().ToString() + "_" + productDTO.ImageFile.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
@@ -85,7 +80,6 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
                         productDTO.ImageFile.CopyTo(stream);
                     }
 
-                    // Lưu đường dẫn tương đối vào DB
                     productDTO.Image =  uniqueFileName;
                 }
                 else
@@ -94,7 +88,6 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
                     return View(productDTO);
                 }
 
-                // ✅ Lưu dữ liệu vào DB
                 _productService.AddAsync(productDTO);
 
                 TempData["success"] = "🎉 Thêm sản phẩm thành công!";
@@ -102,8 +95,6 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                // Ghi log ra console (hữu ích khi debug)
-                Console.WriteLine("❌ Lỗi Add(): " + ex.ToString());
                 ModelState.AddModelError("", "Đã xảy ra lỗi khi thêm sản phẩm.");
                 return View(productDTO);
             }
@@ -159,6 +150,97 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        [HttpGet]
+        [Route("Edit")]
+        public IActionResult Edit(int id)
+        {
+            var product = _productService.GetProductById(id);
+            if (product == null) return NotFound();
+
+            var categories = _categoryService.GetNameAndIDCategory();
+            ViewBag.CategoryList = new SelectList(categories, "Id", "Name", product.CategoryID);
+
+            return View(product);
+        }
+
+        [HttpPost]
+        [Route("Edit")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(ProductDTO productDTO)
+        {
+            var categories = _categoryService.GetNameAndIDCategory();
+            ViewBag.CategoryList = new SelectList(categories, "Id", "Name", productDTO.CategoryID);
+
+            if (!ModelState.IsValid)
+            {
+                TempData["error"] = "Vui lòng kiểm tra lại thông tin sản phẩm.";
+                return View(productDTO);
+            }
+
+            try
+            {
+                var existingProduct = _productService.GetProductById(productDTO.Id);
+                if (existingProduct == null)
+                {
+                    TempData["error"] = "Không tìm thấy sản phẩm cần chỉnh sửa.";
+                    return RedirectToAction("Index");
+                }
+
+                // ✅ Xử lý upload ảnh mới
+                if (productDTO.ImageFile != null)
+                {
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                    var extension = Path.GetExtension(productDTO.ImageFile.FileName).ToLowerInvariant();
+
+                    if (!allowedExtensions.Contains(extension))
+                    {
+                        ModelState.AddModelError("ImageFile", "❌ Chỉ cho phép định dạng .jpg, .jpeg hoặc .png!");
+                        return View(productDTO);
+                    }
+
+                    // Xóa ảnh cũ nếu có
+                    if (!string.IsNullOrEmpty(existingProduct.Image))
+                    {
+                        string oldPath = Path.Combine(_env.WebRootPath, "images/products", existingProduct.Image);
+                        if (System.IO.File.Exists(oldPath))
+                            System.IO.File.Delete(oldPath);
+                    }
+
+                    // Lưu ảnh mới
+                    string uploadsFolder = Path.Combine(_env.WebRootPath, "images/products");
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + productDTO.ImageFile.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        productDTO.ImageFile.CopyTo(stream);
+                    }
+
+                    existingProduct.Image = uniqueFileName;
+                }
+
+                // ✅ Cập nhật thông tin khác
+                existingProduct.Name = productDTO.Name;
+                existingProduct.Detail = productDTO.Detail;
+                existingProduct.Price = productDTO.Price;
+                existingProduct.CreatedDate = productDTO.CreatedDate;
+                existingProduct.EndDate = productDTO.EndDate;
+                existingProduct.CategoryID = productDTO.CategoryID;
+
+                _productService.UpdateProduct(existingProduct);
+                TempData["success"] = "🎉 Cập nhật sản phẩm thành công!";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("❌ Lỗi Edit(): " + ex.ToString());
+                TempData["error"] = "Đã xảy ra lỗi khi cập nhật sản phẩm.";
+                return View(productDTO);
+            }
+        }
+
 
     }
 }

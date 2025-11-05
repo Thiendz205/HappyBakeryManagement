@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model List<HappyBakeryManagement.DTO.AccountDTO>
+
+@{
+    ViewData["Title"] = "Quản lý tài khoản";
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int totalPages = ViewBag.TotalPages ?? 1;
+}
+
+<link rel="stylesheet" href="~/css/site-style.css" />
+
+<div class="main-container">
+    <h2>👥 Quản lý tài khoản</h2>
+
+    <form asp-action="Index" method="get" class="search-form row mb-3">
+        <div class="col-md-4">
+            <input type="text" name="search" class="form-control" placeholder="🔍 Tìm theo email" value="@ViewBag.Search" />
+        </div>
+        <div class="col-md-3">
+            <select name="roleFilter" class="form-control">
+                <option value="">-- Tất cả vai trò --</option>
+                <option value="Admin" selected="@(ViewBag.RoleFilter == "Admin")">Admin</option>
+                <option value="User" selected="@(ViewBag.RoleFilter == "User")">User</option>
+            </select>
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+            <button type="submit" class="btn btn-primary flex-fill">Lọc</button>
+            <a asp-action="Index" class="btn btn-secondary flex-fill">🔄 Làm mới</a>
+        </div>
+    </form>
+
+    <table class="table-style">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Email</th>
+                <th>Vai trò</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                int index = (currentPage - 1) * 10 + 1;
+                foreach (var acc in Model)
+                {
+                    <tr>
+                        <td>@index</td>
+                        <td>@acc.Email</td>
+                        <td>@acc.Role</td>
+                        <td><span class="status @(acc.IsLocked ? "locked" : "active")">@(acc.IsLocked ? "🔒 Bị khóa" : "🟢 Hoạt động")</span></td>
+                        <td>
+                            @if (!acc.IsLocked)
+                            {
+                                <a asp-action="Lock" asp-route-id="@acc.Id" class="btn btn-warning btn-sm">Khoá</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Unlock" asp-route-id="@acc.Id" class="btn btn-success btn-sm">Mở</a>
+                            }
+                            <a asp-action="Delete" asp-route-id="@acc.Id" class="btn btn-danger btn-sm">Xoá</a>
+                        </td>
+                    </tr>
+                    index++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">Không có tài khoản nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        @if (currentPage > 1)
+        {
+            <a asp-action="Index" asp-route-page="@(currentPage - 1)" class="page-btn">« Trước</a>
+        }
+
+        <span>Trang @currentPage / @totalPages</span>
+
+        @if (currentPage < totalPages)
+        {
+            <a asp-action="Index" asp-route-page="@(currentPage + 1)" class="page-btn">Tiếp »</a>
+        }
+    </div>
+
+    <div class="add-section">
+        <a asp-action="Add" class="btn btn-add">➕ Thêm tài khoản</a>
+    </div>
+</div>

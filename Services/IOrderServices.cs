@@ -15,5 +15,6 @@ namespace HappyBakeryManagement.Services
         int GetTotalOrders();
         List<OrderDTO> SearchOrders(string customerName, string phoneNumber, string status, string paymentMethodName, int page, int pageSize);
         int GetTotalSearchedOrders(string customerName, string phoneNumber, string status, string paymentMethodName);
+        public bool PlaceOrder(int customerId, string address, string phone, string? note, int paymentMethodId);
     }
 }
