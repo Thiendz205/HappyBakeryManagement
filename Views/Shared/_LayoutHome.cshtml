@@ -7,7 +7,7 @@
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Fruitkha</title>
+	<title>Cake</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="../../images/fav-icon.png">
@@ -15,23 +15,24 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
-	<link rel="stylesheet" href="assets/css/all.min.css">
+	<link rel="stylesheet" href="~/assets/css/all.min.css" asp-append-version="true" />
 	<!-- bootstrap -->
-	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css" asp-append-version="true" />
 	<!-- owl carousel -->
-	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="~/assets/css/owl.carousel.css" asp-append-version="true" />
 	<!-- magnific popup -->
-	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="~/assets/css/magnific-popup.css" asp-append-version="true" />
 	<!-- animate css -->
-	<link rel="stylesheet" href="assets/css/animate.css">
+	<link rel="stylesheet" href="~/assets/css/animate.css" asp-append-version="true" />
 	<!-- mean menu css -->
-	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
+	<link rel="stylesheet" href="~/assets/css/meanmenu.min.css" asp-append-version="true" />
 	<!-- main style -->
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="~/assets/css/main.css" asp-append-version="true" />
 	<!-- responsive -->
-	<link rel="stylesheet" href="assets/css/responsive.css">
-	<!-- site-->
-    <link href="~/css/site.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/assets/css/responsive.css" asp-append-version="true" />
+	<!-- site -->
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
 
 
 </head>
@@ -53,7 +54,7 @@
 						<!-- 🟧 Logo bên trái -->
 						<div class="site-logo">
 							<a asp-controller="Home" asp-action="Index">
-								<img src="images/logo.png" alt="Logo">
+								<img src="~/images/logo.png" alt="Logo">
 							</a>
 						</div>
 
@@ -61,12 +62,13 @@
 						<nav class="main-menu mx-auto">
 							<ul class="d-flex align-items-center list-unstyled mb-0">
 								<li class="current-list-item mr-4">
-									<a href="#">Home</a>
+									<a <a asp-controller="Home" asp-action="Index">Home</a>
 									<ul class="sub-menu">
 										<li><a href="index.html">Static Home</a></li>
 										<li><a href="index_2.html">Slider Home</a></li>
 									</ul>
 								</li>
+								<li class="mr-4"><a asp-controller="Product" asp-action="Index">Product</a></li>
 								<li class="mr-4"><a href="about.html">About</a></li>
 								<li class="mr-4">
 									<a href="#">Pages</a>
@@ -82,7 +84,6 @@
 								</li>
 								<li class="mr-4"><a href="news.html">News</a></li>
 								<li class="mr-4"><a href="contact.html">Contact</a></li>
-								<li class="mr-4"><a href="shop.html">Shop</a></li>
 							</ul>
 						</nav>
 
@@ -136,9 +137,10 @@
 					<div class="footer-box pages">
 						<h2 class="widget-title">Pages</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a asp-controller="Home" asp-action="Index">Home</a></li>
+							<li><a asp-controller="Product" asp-action="Index">Product</a></li>
+
 							<li><a href="about.html">About</a></li>
-							<li><a href="services.html">Shop</a></li>
 							<li><a href="news.html">News</a></li>
 							<li><a href="contact.html">Contact</a></li>
 						</ul>
@@ -184,28 +186,37 @@
 
 	<!-- end copyright -->
 	<!-- end footer -->
-
 	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
+	<script src="~/assets/js/jquery-1.11.3.min.js" asp-append-version="true"></script>
+
 	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="~/assets/bootstrap/js/bootstrap.min.js" asp-append-version="true"></script>
+
 	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
+	<script src="~/assets/js/jquery.countdown.js" asp-append-version="true"></script>
+
 	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<script src="~/assets/js/jquery.isotope-3.0.6.min.js" asp-append-version="true"></script>
+
 	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
+	<script src="~/assets/js/waypoints.js" asp-append-version="true"></script>
+
 	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
+	<script src="~/assets/js/owl.carousel.min.js" asp-append-version="true"></script>
+
 	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="~/assets/js/jquery.magnific-popup.min.js" asp-append-version="true"></script>
+
 	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
+	<script src="~/assets/js/jquery.meanmenu.min.js" asp-append-version="true"></script>
+
 	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
+	<script src="~/assets/js/sticker.js" asp-append-version="true"></script>
+
 	<!-- main js -->
-	<script src="assets/js/main.js"></script>
+	<script src="~/assets/js/main.js" asp-append-version="true"></script>
+
+	@RenderSection("Scripts", required: false)
 
 </body>
-@RenderSection("Scripts", required: false)
 </html>

@@ -1,0 +1,21 @@
+﻿@model HappyBakeryManagement.Models.Customer
+@{
+    ViewBag.Title = "Thêm khách hàng";
+}
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h1 class="h4 mb-0 text-gray-800">@ViewBag.Title</h1>
+    <a asp-action="Index" class="btn btn-light btn-sm"><i class="fas fa-arrow-left mr-1"></i>Danh sách</a>
+</div>
+
+<form asp-action="Add" method="post">
+    @Html.AntiForgeryToken()
+    @Html.Partial("_Form", Model)
+    <div class="mt-3">
+        <button class="btn btn-primary"><i class="fas fa-save mr-1"></i> Lưu</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Hủy</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

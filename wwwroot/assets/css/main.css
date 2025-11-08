@@ -2049,20 +2049,7 @@ a.video-play-btn {
   box-shadow: 0 0 20px #adadad;
   left: 50%;
   margin-left: -45px;
-}
-
-.abt-bg {
-  background-image: url(../img/abt.jpg);
-  height: 100%;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
+}.abt-bg {    background-image: url(../../images/comming-bg.jpg);    height: 100%;    width: 100%;    background-size: cover;    background-position: center;    border-top-right-radius: 10px;    border-bottom-left-radius: 10px;    position: relative;    z-index: 1;    overflow: hidden;}
 
 .abt-bg:after {
   position: absolute;
@@ -2102,8 +2089,8 @@ a.video-play-btn {
 ----------------------------------------------------------------------------- */
 .shop-banner {
   position: relative;
-  background-color: #f5f5f5;
-  background-image: url(../img/1.jpg);
+  background-color: #ffffff;
+  background-image: url(../../images/banner.png);
   background-size: cover;
   padding: 110px 0px 115px;
 }
@@ -2119,14 +2106,14 @@ a.video-play-btn {
   position: relative;
   font-size: 60px;
   font-weight: 700;
-  color: #F28123;
+  color: #ffffff;
 }
 
 .shop-banner .sale-percent span {
   position: relative;
   font-size: 24px;
   line-height: 1.1em;
-  color: #051922;
+  color: #F28123;
   font-weight: 400;
   text-align: center;
   margin-right: 10px;

@@ -20,7 +20,7 @@ namespace HappyBakeryManagement
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            // 🔹 2. Cấu hình Identity
+            // 🔹 2. Cấu hình Identity (chỉ giữ lại dòng này)
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -40,6 +40,7 @@ namespace HappyBakeryManagement
             builder.Services.AddScoped<IOrderDetailsService, OrderDetailsService>();
             builder.Services.AddScoped<IEvaluteServices, EvaluteServices>();
             builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();

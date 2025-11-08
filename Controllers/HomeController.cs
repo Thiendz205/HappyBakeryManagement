@@ -1,22 +1,32 @@
 using System.Diagnostics;
+using HappyBakeryManagement.DTO;
 using HappyBakeryManagement.Models;
+using HappyBakeryManagement.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication3.Repository;
 
 namespace HappyBakeryManagement.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IProductServices _productService;
+        private readonly IWebHostEnvironment _env;
+        private readonly ICategoriesServices _categoryService;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductServices productService, IWebHostEnvironment env, ICategoriesServices categoryService, ILogger<HomeController> logger)
         {
+            _productService = productService;
+            _env = env;
+            _categoryService = categoryService;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var _products = _productService.GetAllProducts();
+            return View(_products);
         }
         public IActionResult Privacy()
         {
