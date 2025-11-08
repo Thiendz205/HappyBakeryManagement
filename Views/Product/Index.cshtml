@@ -1,0 +1,102 @@
+﻿@using HappyBakeryManagement.DTO
+@model IEnumerable<ProductDTO>
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var categories = ViewBag.Categories as IEnumerable<CategoriesDTO>;
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container text-center">
+        <h1>Shop</h1>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-filters">
+                    <ul id="category-filter">
+                        <li class="active" data-filter="*">Tất cả</li>
+                        @foreach (var cate in categories)
+                        {
+                            <li data-filter=".cate-@cate.Id">@cate.Name</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row product-lists">
+            @foreach (var product in Model)
+            {
+                <div class="col-lg-4 col-md-6 text-center cate-@product.CategoryID">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a asp-action="Detail" asp-controller="Product" asp-route-id="@product.Id">
+                                <img src="~/images/products/@product.Image" alt="@product.Name" />
+                            </a>
+                        </div>
+                        <h3>@product.Name</h3>
+                        <p class="product-price">
+                            <span>@product.CategoryName</span> @product.Price.ToString("N0")₫
+                        </p>
+                        <a href="@Url.Action("AddToCart", "Cart", new { id = product.Id })" class="cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-lg-12 text-center">
+                <div class="pagination-wrap">
+                    <ul class="pagination justify-content-center">
+                        @if (ViewBag.TotalPages > 1)
+                        {
+                            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })">Prev</a>
+                            </li>
+
+                            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })">Next</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script>
+        // Filter sản phẩm theo category
+        $(window).on('load', function () {
+            var $grid = $('.product-lists').isotope({
+                itemSelector: '.col-lg-4',
+                layoutMode: 'fitRows'
+            });
+
+            $('#category-filter li').on('click', function () {
+                $('#category-filter li').removeClass('active');
+                $(this).addClass('active');
+                var filterValue = $(this).attr('data-filter');
+                $grid.isotope({ filter: filterValue });
+            });
+        });
+    </script>
+}
