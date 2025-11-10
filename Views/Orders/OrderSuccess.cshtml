@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Đặt hàng thành công";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- breadcrumb -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Hoàn tất đặt hàng</p>
+                    <h1>Thành công!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- success section -->
+<div class="container text-center mt-100 mb-150">
+    <h2>🎉 Cảm ơn bạn đã đặt hàng!</h2>
+    <p>Đơn hàng của bạn đang được xử lý. Chúng tôi sẽ liên hệ sớm nhất.</p>
+    <a asp-controller="Orders" asp-action="OrderHistory" class="cart-btn mt-4">
+        <i class="fas fa-box"></i> Xem đơn hàng của tôi
+    </a>
+    <a asp-controller="Home" asp-action="Index" class="cart-btn mt-4">
+        <i class="fas fa-home"></i> Về trang chủ
+    </a>
+</div>

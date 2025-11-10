@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Đặt hàng";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var methods = ViewBag.PaymentMethods as List<HappyBakeryManagement.Models.PaymentMethod>;
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Thanh toán đơn hàng</p>
+                    <h1>Đặt hàng</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- checkout section -->
+<div class="checkout-section mt-150 mb-150">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                }
+
+                <form asp-action="Checkout" method="post" class="contact-form">
+                    <div class="form-group mb-3">
+                        <label>Địa chỉ giao hàng</label>
+                        <input type="text" class="form-control" name="deliveryAddress" required />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Số điện thoại</label>
+                        <input type="text" class="form-control" name="phoneNumber" required pattern="0[0-9]{9}" title="Số điện thoại phải có 10 số và bắt đầu bằng 0" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Ghi chú</label>
+                        <textarea class="form-control" name="note" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Phương thức thanh toán</label>
+                        <select name="paymentMethodId" class="form-control" required>
+                            <option value="">-- Chọn phương thức --</option>
+                            @foreach (var item in methods)
+                            {
+                                <option value="@item.Id">@item.NamePaymentMethod</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="cart-btn">
+                            <i class="fas fa-credit-card"></i> Xác nhận đặt hàng
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

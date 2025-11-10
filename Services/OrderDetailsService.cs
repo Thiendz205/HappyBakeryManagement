@@ -248,6 +248,6 @@ namespace HappyBakeryManagement.Services
         {
             return _db.OrderDetails.Count();
         }
-
+      
     }
 }

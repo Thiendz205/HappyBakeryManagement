@@ -231,5 +231,74 @@ namespace HappyBakeryManagement.Services
 
             return true;
         }
+        // 🔹 Lấy thông tin đơn hàng (hiển thị chi tiết)
+        public OrderDTO GetOrderById(int orderId)
+        {
+            var query = from o in _db.Orders
+                        .Include(o => o.Customer)
+                        .Include(o => o.PaymentMethod)
+                        where o.Id == orderId
+                        select new OrderDTO
+                        {
+                            Id = o.Id,
+                            BookingDate = o.BookingDate,
+                            Status = o.Status,
+                            DeliveryAddress = o.DeliveryAddress,
+                            PhoneNumber = o.PhoneNumber,
+                            Note = o.Note,
+                            PaymentMethodID = o.PaymentMethodID,
+                            PaymentMethodName = o.PaymentMethod.NamePaymentMethod,
+                            CustomerID = o.CustomerID,
+                            CustomerName = o.Customer.FullName
+                        };
+
+            return query.FirstOrDefault();
+        }
+
+
+        // 🔹 Lấy danh sách chi tiết đơn hàng
+        public List<OrderDetailsDTO> GetOrderDetailsByOrderId(int orderId)
+        {
+            var query = from d in _db.OrderDetails
+                        .Include(d => d.Product)
+                        .Include(d => d.Order)
+                        where d.OrderID == orderId
+                        select new OrderDetailsDTO
+                        {
+                            Id = d.Id,
+                            OrderID = d.OrderID,
+                            ProductID = d.ProductID,
+                            ProductName = d.Product.Name,
+                            Quantity = d.Quantity,
+                            TotalAmount = d.TotalAmount,
+                            CustomerName = d.Order.Customer.FullName
+                        };
+
+            return query.ToList();
+        }
+        // 🔹 Lấy danh sách đơn hàng của một khách hàng (customerId)
+        public List<OrderDTO> GetOrdersByCustomer(int customerId)
+        {
+            var query = from o in _db.Orders
+                        .Include(o => o.Customer)
+                        .Include(o => o.PaymentMethod)
+                        where o.CustomerID == customerId
+                        select new OrderDTO
+                        {
+                            Id = o.Id,
+                            BookingDate = o.BookingDate,
+                            Status = o.Status,
+                            DeliveryAddress = o.DeliveryAddress,
+                            PhoneNumber = o.PhoneNumber,
+                            Note = o.Note,
+                            PaymentMethodID = o.PaymentMethodID,
+                            PaymentMethodName = o.PaymentMethod.NamePaymentMethod,
+                            CustomerID = o.CustomerID,
+                            CustomerName = o.Customer.FullName
+                        };
+
+            return query.OrderByDescending(o => o.BookingDate).ToList();
+        }
+
     }
 }

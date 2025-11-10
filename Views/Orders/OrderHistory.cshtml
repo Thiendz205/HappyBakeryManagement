@@ -1,0 +1,75 @@
+﻿@model List<HappyBakeryManagement.DTO.OrderDTO>
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    ViewData["Title"] = "Lịch sử đơn hàng";
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Thế giới bánh ngọt</p>
+                    <h1>Lịch sử đơn hàng</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb -->
+
+<div class="container mt-5 mb-150">
+
+    <!-- ✅ Hiển thị thông báo nếu có lỗi -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger text-center mb-4">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <!-- ✅ Nếu có đơn hàng -->
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-light text-center">
+                <tr>
+                    <th>Mã đơn</th>
+                    <th>Ngày đặt</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.Id</td>
+                        <td>@order.BookingDate.ToString("dd/MM/yyyy")</td>
+                        <td>@order.Status</td>
+                        <td>
+                            @if (order.Status != "Canceled")
+                            {
+                                <a asp-controller="Orders" asp-action="OrderDetails" asp-route-id="@order.Id" class="btn btn-sm btn-primary">
+                                    Chi tiết
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Không có chi tiết</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <!-- ✅ Nếu không có đơn hàng hoặc chưa đăng nhập -->
+        <div class="alert alert-info text-center">
+            Chưa có đơn hàng nào.
+        </div>
+    }
+</div>

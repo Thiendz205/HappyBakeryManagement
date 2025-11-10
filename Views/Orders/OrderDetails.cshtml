@@ -1,0 +1,101 @@
+﻿@model List<HappyBakeryManagement.DTO.OrderDetailsDTO>
+@using HappyBakeryManagement.DTO
+
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var order = ViewBag.Order as OrderDTO;
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Thế giới bánh ngọt</p>
+                    <h1>Chi tiết đơn hàng #@order?.Id</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-product mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                @if (order != null)
+                {
+                    <!-- Thông tin đơn hàng -->
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-primary">🧾 Thông tin đơn hàng</h5>
+                            <p><strong>Khách hàng:</strong> @order.CustomerName</p>
+                            <p><strong>Ngày đặt:</strong> @order.BookingDate.ToString("dd/MM/yyyy")</p>
+                            <p><strong>Trạng thái:</strong> @order.Status</p>
+                            <p><strong>Địa chỉ giao hàng:</strong> @order.DeliveryAddress</p>
+                            <p><strong>Số điện thoại:</strong> @order.PhoneNumber</p>
+                            <p><strong>Phương thức thanh toán:</strong> @order.PaymentMethodName</p>
+                            @if (!string.IsNullOrEmpty(order.Note))
+                            {
+                                <p><strong>Ghi chú:</strong> @order.Note</p>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm trong đơn -->
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-success">📦 Sản phẩm trong đơn</h5>
+                            <table class="table table-bordered table-striped align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Tên sản phẩm</th>
+                                        <th class="text-center">Số lượng</th>
+                                        <th class="text-end">Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null && Model.Any())
+                                    {
+                                        decimal total = 0;
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.ProductName</td>
+                                                <td class="text-center">@item.Quantity</td>
+                                                <td class="text-end">@string.Format("{0:N0} đ", item.TotalAmount)</td>
+                                            </tr>
+                                            total += item.TotalAmount ?? 0;
+                                        }
+
+                                        <tr class="table-info fw-bold">
+                                            <td colspan="2" class="text-end">Tổng cộng:</td>
+                                            <td class="text-end">@string.Format("{0:N0} đ", total)</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="3" class="text-center text-muted">Không có sản phẩm nào trong đơn hàng này.</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            <div class="text-center mt-4">
+                                <a asp-controller="Orders" asp-action="OrderHistory" class="btn btn-secondary">← Quay lại danh sách đơn hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info text-center">
+                        Đơn hàng không tồn tại hoặc đã bị hủy.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
