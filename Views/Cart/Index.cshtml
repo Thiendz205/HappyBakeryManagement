@@ -1,0 +1,217 @@
+﻿@model List<HappyBakeryManagement.Models.CartItemVM>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var total = (decimal)(ViewBag.Total ?? 0m);
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Giỏ hàng của bạn</p>
+                    <h1>Xem giỏ hàng</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<!-- ✅ Thông báo -->
+@if (TempData["ok"] != null)
+{
+    <div class="container mt-4">
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            @TempData["ok"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+}
+@if (TempData["error"] != null)
+{
+    <div class="container mt-4">
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            @TempData["error"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+}
+
+<!-- 🧾 Bảng giỏ hàng -->
+<section class="cart-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cart-table-wrap">
+                    <table class="cart-table table table-bordered align-middle text-center">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-left">Sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th>Tạm tính</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                @foreach (var x in Model)
+                                {
+                                    <tr>
+                                        <td class="text-left">
+                                            <div class="d-flex align-items-center">
+                                                @if (!string.IsNullOrEmpty(x.Image))
+                                                {
+                                                    <img src="~/images/products/@x.Image" alt="@x.Name"
+                                                         class="rounded mr-3"
+                                                         style="width:60px;height:60px;object-fit:cover;">
+                                                }
+                                                <span class="font-weight-bold">@x.Name</span>
+                                            </div>
+                                        </td>
+
+                                        <td>@x.Price.ToString("n0") đ</td>
+
+                                        <td>
+                                            <form asp-action="UpdateQty" method="post" class="update-qty-form d-flex justify-content-center align-items-center">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="cartId" value="@x.CartId" />
+                                                <div class="input-group input-group-sm" style="width:120px;">
+                                                    <div class="input-group-prepend">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                                onclick="var q=this.form.qty; q.value=Math.max(1,(+q.value||1)-1); updateCartItem(q);">
+                                                            -
+                                                        </button>
+                                                    </div>
+
+                                                    <input class="form-control text-center" type="number" name="qty"
+                                                           value="@x.Quantity" min="1" onchange="updateCartItem(this)" />
+
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                                onclick="var q=this.form.qty; q.value=(+q.value||1)+1; updateCartItem(q);">
+                                                            +
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+
+                                        <td class="text-success font-weight-bold subtotal-@x.CartId">@x.SubTotal.ToString("n0") đ</td>
+
+                                        <td>
+                                            <form asp-action="Remove" method="post" class="d-inline">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="cartId" value="@x.CartId" />
+                                                <button class="btn btn-outline-danger btn-sm" title="Xóa" onclick="return confirm('Xóa sản phẩm này?')">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted py-5">
+                                        <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+                                        <p>Chưa có sản phẩm nào trong giỏ hàng.</p>
+                                        <a asp-controller="Product" asp-action="Index" class="btn btn-primary">
+                                            <i class="fas fa-arrow-left mr-1"></i> Tiếp tục mua sắm
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="row mt-4">
+                <div class="col-lg-8 offset-lg-4">
+                    <div class="cart-summary-box p-4 bg-light rounded shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0 font-weight-bold">Tổng cộng:</h5>
+                            <h4 class="text-danger mb-0 font-weight-bold">@total.ToString("n0") đ</h4>
+                        </div>
+
+                        <div class="text-right">
+                            <form asp-action="Clear" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button class="btn btn-outline-danger mr-2" onclick="return confirm('Xóa toàn bộ giỏ hàng?')">
+                                    <i class="fas fa-trash"></i> Xóa tất cả
+                                </button>
+                            </form>
+
+                            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary mr-2">
+                                <i class="fas fa-arrow-left"></i> Tiếp tục mua
+                            </a>
+
+                            <!-- Bật thanh toán khi có hàng -->
+                            <a asp-controller="Orders" asp-action="Checkout" class="btn btn-success">
+                                <i class="fas fa-credit-card mr-1"></i> Đặt hàng
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.title = "Giỏ hàng - Happy Bakery";
+
+        function updateCartItem(input) {
+            const form = input.closest('form');
+            const cartId = form.querySelector('input[name="cartId"]').value;
+            const qty = parseInt(input.value) || 1;
+
+            if (qty < 1) {
+                input.value = 1;
+                return;
+            }
+
+            const fd = new FormData();
+            fd.append('cartId', cartId);
+            fd.append('qty', qty);
+            fd.append('__RequestVerificationToken',
+                      form.querySelector('input[name="__RequestVerificationToken"]').value);
+
+            fetch(form.action, { method: 'POST', body: fd })
+                .then(r => {
+                    if (!r.ok) throw new Error('Network error');
+                    return r.json();
+                })
+                .then(data => {
+                    if (!data.success) {
+                        alert(data.message || 'Có lỗi xảy ra');
+                        return;
+                    }
+
+                    const fmt = n => Number(n).toLocaleString('vi-VN');
+
+                    // cập nhật tạm tính
+                    const sub = document.querySelector(`.subtotal-${cartId}`);
+                    if (sub) sub.textContent = fmt(data.subTotal) + ' đ';
+
+                    // cập nhật tổng cộng
+                    const totalEl = document.querySelector('.cart-summary-box h4.text-danger');
+                    if (totalEl) totalEl.textContent = fmt(data.total) + ' đ';
+                })
+                .catch(() => alert('Có lỗi xảy ra khi cập nhật'));
+        }
+    </script>
+}

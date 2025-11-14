@@ -11,6 +11,7 @@ namespace HappyBakeryManagement.Services
         void DeleteProduct(int id);
         ProductDTO GetProductById(int id);
         void UpdateProduct(ProductDTO dto);
+        List<ProductDTO> GetAvailableProducts();
 
 
 

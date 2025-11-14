@@ -9,16 +9,22 @@ namespace HappyBakeryManagement.Services
     {
         private readonly ApplicationDbContext _db;
         public CustomerService(ApplicationDbContext db) => _db = db;
-
         public async Task<List<Customer>> GetAsync(Expression<Func<Customer, bool>>? predicate = null)
         {
-            IQueryable<Customer> q = _db.Customers.AsNoTracking();
+            IQueryable<Customer> q = _db.Customers
+                .Include(c => c.User)   
+                .AsNoTracking();
+
             if (predicate != null) q = q.Where(predicate);
+
             return await q.OrderBy(x => x.Id).ToListAsync();
         }
 
         public async Task<Customer?> GetByIdAsync(int id)
-            => await _db.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            => await _db.Customers
+                .Include(c => c.User) 
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<int> CreateAsync(Customer e)
         {
@@ -29,8 +35,17 @@ namespace HappyBakeryManagement.Services
 
         public async Task UpdateAsync(Customer e)
         {
-            _db.Attach(e);
-            _db.Entry(e).State = EntityState.Modified;
+            var existed = await _db.Customers.FirstOrDefaultAsync(x => x.Id == e.Id);
+            if (existed == null) return;
+
+            existed.FullName = e.FullName;
+            existed.PhoneNumber = e.PhoneNumber;
+            existed.Address = e.Address;
+            existed.CitizenID = e.CitizenID;
+            existed.Gender = e.Gender;
+            existed.DOB = e.DOB;
+
+
             await _db.SaveChangesAsync();
         }
 
@@ -42,7 +57,6 @@ namespace HappyBakeryManagement.Services
             await _db.SaveChangesAsync();
         }
 
- 
         public Task<bool> PhoneExistsAsync(string phone, int? ignoreId = null)
             => _db.Customers.AsNoTracking()
                 .AnyAsync(x => x.PhoneNumber == phone && (ignoreId == null || x.Id != ignoreId));

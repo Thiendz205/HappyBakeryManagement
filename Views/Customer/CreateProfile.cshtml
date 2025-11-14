@@ -1,0 +1,65 @@
+﻿@model HappyBakeryManagement.Models.Customer
+@{
+    ViewBag.Title = "Hoàn thiện thông tin cá nhân";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<style>
+    body {
+        padding-top: 120px;
+    }
+</style>
+
+<div class="container mb-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Hoàn thiện thông tin cá nhân</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="CreateProfile" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="form-group mb-3">
+                    <label>Họ tên</label>
+                    <input asp-for="FullName" class="form-control" required />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Số điện thoại</label>
+                    <input asp-for="PhoneNumber" class="form-control" required />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Địa chỉ</label>
+                    <input asp-for="Address" class="form-control" required />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>CMND/CCCD</label>
+                    <input asp-for="CitizenID" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Giới tính</label>
+                    <select asp-for="Gender" class="form-control">
+                        <option value="">-- Chọn giới tính --</option>
+                        <option value="true">Nam</option>
+                        <option value="false">Nữ</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Ngày sinh</label>
+                    <input asp-for="DOB" type="date" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-success">Lưu thông tin</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -25,8 +25,8 @@ namespace HappyBakeryManagement.Controllers
 
         public IActionResult Index()
         {
-            var _products = _productService.GetAllProducts();
-            return View(_products);
+            var availableProducts = _productService.GetAvailableProducts();
+            return View(availableProducts);
         }
         public IActionResult Privacy()
         {

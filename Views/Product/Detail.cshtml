@@ -35,18 +35,19 @@
 					<p class="single-product-pricing"><span>@Model.CategoryName</span> @String.Format("{0:N0}₫", Model.Price)</p>
 					<p>@Model.Detail</p>
 					<div class="single-product-form">
-						<form action="index.html">
-							<input type="number" placeholder="0">
+						<form asp-action="AddToCart" asp-controller="Cart" method="post" class="d-inline-flex align-items-center">
+							@Html.AntiForgeryToken()
+							<input type="hidden" name="id" value="@Model.Id" />
+							<input type="number" name="quantity" value="1" min="1" class="mr-2" style="width: 80px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+							<button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
 						</form>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-					<h4>Share:</h4>
-					<ul class="product-share">
-						<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-						<li><a href=""><i class="fab fa-twitter"></i></a></li>
-						<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
-						<li><a href=""><i class="fab fa-linkedin"></i></a></li>
-					</ul>
+					<h4>Đánh giá</h4>
+					<a asp-controller="Evalute" asp-action="Add" asp-route-id="@Model.Id"> <p>Đánh giá sản phẩm</p></a>
+					<br>
+					<a asp-controller="Evalute" asp-action="Index" asp-route-id="@Model.Id"> <p>Xem các đánh giá của sản phẩm này</p></a>
+
+					
 				</div>
 			</div>
 		</div>

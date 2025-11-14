@@ -3,6 +3,7 @@ using HappyBakeryManagement.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
 using WebApplication3.Repository;
 
 namespace HappyBakeryManagement.Areas.Admin.Controllers
@@ -38,7 +39,7 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add(ProductDTO productDTO)
+        public async Task<IActionResult> Add(ProductDTO productDTO)
         {
             var categories = _categoryService.GetNameAndIDCategory();
             ViewBag.CategoryList = new SelectList(categories, "Id", "Name");
@@ -88,7 +89,7 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
                     return View(productDTO);
                 }
 
-                _productService.AddAsync(productDTO);
+               await _productService.AddAsync(productDTO);
 
                 TempData["success"] = "🎉 Thêm sản phẩm thành công!";
                 return RedirectToAction("Index");
@@ -225,8 +226,7 @@ namespace HappyBakeryManagement.Areas.Admin.Controllers
                 existingProduct.Name = productDTO.Name;
                 existingProduct.Detail = productDTO.Detail;
                 existingProduct.Price = productDTO.Price;
-                existingProduct.CreatedDate = productDTO.CreatedDate;
-                existingProduct.EndDate = productDTO.EndDate;
+                existingProduct.Quantity = productDTO.Quantity;
                 existingProduct.CategoryID = productDTO.CategoryID;
 
                 _productService.UpdateProduct(existingProduct);
