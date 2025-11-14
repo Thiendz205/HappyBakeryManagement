@@ -41,6 +41,8 @@ namespace HappyBakeryManagement
             builder.Services.AddScoped<IEvaluteServices, EvaluteServices>();
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<ICustomerService, CustomerService>();
+            builder.Services.AddScoped<ICartService, CartService>();
+
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();

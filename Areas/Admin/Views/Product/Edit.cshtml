@@ -11,35 +11,35 @@
         @Html.AntiForgeryToken()
         <input type="hidden" asp-for="Id" />
 
+        <!-- ✅ Tên sản phẩm -->
         <div class="form-group mb-3">
             <label asp-for="Name" class="form-label">Tên sản phẩm</label>
             <input asp-for="Name" class="form-control" placeholder="Nhập tên sản phẩm" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
+        <!-- ✅ Mô tả -->
         <div class="form-group mb-3">
             <label asp-for="Detail" class="form-label">Mô tả chi tiết</label>
             <textarea asp-for="Detail" class="form-control" rows="3" placeholder="Nhập mô tả sản phẩm"></textarea>
             <span asp-validation-for="Detail" class="text-danger"></span>
         </div>
 
+        <!-- ✅ Giá -->
         <div class="form-group mb-3">
             <label asp-for="Price" class="form-label">Giá</label>
             <input asp-for="Price" class="form-control" />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label asp-for="CreatedDate" class="form-label">Ngày tạo</label>
-                <input asp-for="CreatedDate" class="form-control" type="date" />
-            </div>
-            <div class="col-md-6">
-                <label asp-for="EndDate" class="form-label">Ngày kết thúc</label>
-                <input asp-for="EndDate" class="form-control" type="date" />
-            </div>
+        <!-- ✅ Số lượng -->
+        <div class="form-group mb-3">
+            <label asp-for="Quantity" class="form-label">Số lượng</label>
+            <input asp-for="Quantity" class="form-control" min="0" />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
         </div>
 
+        <!-- ✅ Danh mục -->
         <div class="form-group mb-3">
             <label class="form-label">Danh mục</label>
             <select asp-for="CategoryID" asp-items="ViewBag.CategoryList" class="form-control form-control-lg">
@@ -48,6 +48,7 @@
             <span asp-validation-for="CategoryID" class="text-danger"></span>
         </div>
 
+        <!-- ✅ Ảnh hiện tại -->
         <div class="form-group mb-3">
             <label class="form-label">Ảnh hiện tại</label><br />
             @if (!string.IsNullOrEmpty(Model.Image))
@@ -60,12 +61,14 @@
             }
         </div>
 
+        <!-- ✅ Chọn ảnh mới -->
         <div class="form-group mb-4">
             <label asp-for="ImageFile" class="form-label">Chọn ảnh mới (nếu muốn thay)</label>
             <input asp-for="ImageFile" class="form-control-file" accept="image/*" />
             <span asp-validation-for="ImageFile" class="text-danger"></span>
         </div>
 
+        <!-- ✅ Nút -->
         <div class="text-center">
             <button type="submit" class="btn btn-success px-4 me-2">
                 <i class="fas fa-save"></i> Lưu thay đổi
@@ -77,3 +80,6 @@
     </form>
 </div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

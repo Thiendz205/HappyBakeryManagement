@@ -19,7 +19,7 @@ namespace HappyBakeryManagement.Controllers
 
         public IActionResult Index(int page = 1, int pageSize = 9)
         {
-            var allProducts = _productService.GetAllProducts(); // trả về IEnumerable<ProductDTO>
+            var allProducts = _productService.GetAvailableProducts(); // trả về IEnumerable<ProductDTO>
             var totalProducts = allProducts.Count();
             var totalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
 

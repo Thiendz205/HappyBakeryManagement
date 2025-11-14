@@ -20,13 +20,12 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead class="table-light">
-                        <tr>
+                        <tr class="text-center">
                             <th>ID</th>
                             <th>Tên</th>
                             <th>Mô tả</th>
-                            <th>Giá</th>
-                            <th>Ngày tạo</th>
-                            <th>Ngày kết thúc</th>
+                            <th>Giá (₫)</th>
+                            <th>Số lượng</th>
                             <th>Danh mục</th>
                             <th>Ảnh</th>
                             <th>Chức năng</th>
@@ -36,35 +35,47 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            <tr class="align-middle">
                                 <td>@item.Id</td>
                                 <td>@item.Name</td>
-                                <td>@item.Detail</td>
-                                <td>@String.Format("{0:N0}₫", item.Price)</td>
-                                <td>@item.CreatedDate?.ToString("dd/MM/yyyy")</td>
-                                <td>@item.EndDate?.ToString("dd/MM/yyyy")</td>
-                                <td>@item.CategoryName</td>
-                                <td>
+                                <td class="text-truncate" style="max-width: 200px;">@item.Detail</td>
+                                <td class="text-end">@String.Format("{0:N0}", item.Price)</td>
+                                <td class="text-center">@item.Quantity</td>
+                                <td class="text-center">@item.CategoryName</td>
+
+                                <td class="text-center">
                                     @if (!string.IsNullOrEmpty(item.Image))
                                     {
-                                        <img src="~/images/products/@item.Image"alt="@item.Name" width="100" class="img-thumbnail" />
+                                        <img src="~/images/products/@item.Image"
+                                             alt="@item.Name"
+                                             width="90"
+                                             height="70"
+                                             class="img-thumbnail shadow-sm" />
                                     }
                                     else
                                     {
-                                        <span class="text-muted">No image</span>
+                                        <span class="text-muted fst-italic">Chưa có ảnh</span>
                                     }
                                 </td>
+
                                 <td class="text-center">
-                                    <a asp-action="Edit" asp-controller="Product" asp-area="Admin"
+                                    <a asp-action="Edit"
+                                       asp-controller="Product"
+                                       asp-area="Admin"
                                        asp-route-id="@item.Id"
-                                       class="btn btn-warning btn-sm">
+                                       class="btn btn-warning btn-sm me-1">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline">
+                                    <form asp-action="Delete"
+                                          asp-route-id="@item.Id"
+                                          method="post"
+                                          style="display:inline">
                                         @Html.AntiForgeryToken()
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa không?')">
-                                            Delete
+                                        <button type="submit"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')">
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
                                 </td>

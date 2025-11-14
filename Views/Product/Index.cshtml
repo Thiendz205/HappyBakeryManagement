@@ -43,9 +43,14 @@
                         <p class="product-price">
                             <span>@product.CategoryName</span> @product.Price.ToString("N0")₫
                         </p>
-                        <a href="@Url.Action("AddToCart", "Cart", new { id = product.Id })" class="cart-btn">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </a>
+                        <form asp-action="AddToCart" asp-controller="Cart" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@product.Id" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="cart-btn">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
             }

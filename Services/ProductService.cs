@@ -6,53 +6,82 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication3.Repository
 {
-    public class ProductService: IProductServices
+    public class ProductService : IProductServices
     {
-        public readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
+
         public ProductService(ApplicationDbContext db)
         {
             _db = db;
-        }   
+        }
+
+        // ✅ Lấy danh sách tất cả sản phẩm
         public List<ProductDTO> GetAllProducts()
         {
-            var products = from p in _db.Products
-                            .Include(p => p.Category)
-                           select new ProductDTO
-                           {
-                               Id = p.Id,
-                               Name = p.Name,
-                               Detail = p.Detail,
-                               Price = p.Price,
-                               CreatedDate = p.CreatedDate,
-                               EndDate = p.EndDate,
-                               CategoryID = p.Category.Id,
-                               CategoryName = p.Category.Name,
-                               Image = p.Image
-                           };
+            var products = _db.Products
+                .Include(p => p.Category)
+                .Select(p => new ProductDTO
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Detail = p.Detail,
+                    Price = p.Price,
+                    Quantity = p.Quantity, // ✅ thêm số lượng
+                    CategoryID = p.Category.Id,
+                    CategoryName = p.Category.Name,
+                    Image = p.Image
+                });
+
             return products.ToList();
         }
+
+        // ✅ Kiểm tra trùng tên
         public async Task<bool> ExistsByNameAsync(string name)
         {
             return await _db.Products.AnyAsync(p => p.Name.ToLower() == name.ToLower());
         }
 
+        // ✅ Thêm sản phẩm mới
         public async Task AddAsync(ProductDTO productDTO)
         {
-            var product = new Product
-            {
-                Name = productDTO.Name,
-                Detail = productDTO.Detail,
-                Price = productDTO.Price,
-                CreatedDate = productDTO.CreatedDate,
-                EndDate = productDTO.EndDate,
-                CategoryId = productDTO.CategoryID,
-                Image = productDTO.Image
-            };
+            // Kiểm tra tên trùng (bỏ khoảng trắng và thường hóa)
+            var existing = await _db.Products
+                .FirstOrDefaultAsync(p => p.Name.Trim().ToLower() == productDTO.Name.Trim().ToLower());
 
-            _db.Products.Add(product);
+            if (existing != null)
+            {
+                // ✅ Nếu trùng: tăng số lượng
+                existing.Quantity += productDTO.Quantity;
+
+                // (Tuỳ chọn) cập nhật thêm thông tin
+                existing.Price = productDTO.Price;
+                existing.Detail = productDTO.Detail;
+                existing.Image = productDTO.Image;
+                existing.CategoryId = productDTO.CategoryID;
+
+                _db.Products.Update(existing);
+            }
+            else
+            {
+                // ✅ Nếu chưa có thì tạo mới
+                var newProduct = new Product
+                {
+                    Name = productDTO.Name.Trim(),
+                    Detail = productDTO.Detail,
+                    Price = productDTO.Price,
+                    Quantity = productDTO.Quantity,
+                    CategoryId = productDTO.CategoryID,
+                    Image = productDTO.Image
+                };
+
+                _db.Products.Add(newProduct);
+            }
+
             await _db.SaveChangesAsync();
         }
 
+
+        // ✅ Lấy sản phẩm theo Id
         public ProductDTO GetProductById(int id)
         {
             var product = _db.Products
@@ -64,8 +93,7 @@ namespace WebApplication3.Repository
                     Name = p.Name,
                     Detail = p.Detail,
                     Price = p.Price,
-                    CreatedDate = p.CreatedDate,
-                    EndDate = p.EndDate,
+                    Quantity = p.Quantity, // ✅ thêm số lượng
                     CategoryID = p.Category.Id,
                     CategoryName = p.Category.Name,
                     Image = p.Image
@@ -75,6 +103,7 @@ namespace WebApplication3.Repository
             return product;
         }
 
+        // ✅ Xóa sản phẩm
         public void DeleteProduct(int id)
         {
             var product = _db.Products.FirstOrDefault(p => p.Id == id);
@@ -85,16 +114,17 @@ namespace WebApplication3.Repository
             }
         }
 
+        // ✅ Cập nhật sản phẩm
         public void UpdateProduct(ProductDTO dto)
         {
             var p = _db.Products.FirstOrDefault(x => x.Id == dto.Id);
-            if (p == null) throw new Exception("Không tìm thấy sản phẩm.");
+            if (p == null)
+                throw new Exception("Không tìm thấy sản phẩm.");
 
             p.Name = dto.Name;
             p.Detail = dto.Detail;
             p.Price = dto.Price;
-            p.CreatedDate = dto.CreatedDate;
-            p.EndDate = dto.EndDate;
+            p.Quantity = dto.Quantity; // ✅ cập nhật số lượng
             p.CategoryId = dto.CategoryID;
             p.Image = dto.Image;
 
@@ -102,6 +132,24 @@ namespace WebApplication3.Repository
             _db.SaveChanges();
         }
 
+        public List<ProductDTO> GetAvailableProducts()
+        {
+            return _db.Products
+                .Include(p => p.Category)
+                .Where(p => p.Quantity > 0) // ❗ Chỉ lấy sản phẩm còn hàng
+                .Select(p => new ProductDTO
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Detail = p.Detail,
+                    Price = p.Price,
+                    Quantity = p.Quantity,
+                    CategoryID = p.Category.Id,
+                    CategoryName = p.Category.Name,
+                    Image = p.Image
+                })
+                .ToList();
+        }
 
     }
 }
